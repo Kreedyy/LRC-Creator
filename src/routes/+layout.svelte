@@ -71,16 +71,18 @@
 	:global(button){
 		height: 40px;
 		width: 100px;
-		border: 3px solid var(--neutral-500);
+		border: 2px solid var(--neutral-200);
 		border-radius: 6px; /*NOTE: 2px less than .buttonContainer*/
-		background-color: var(--brand-500);
-		color: var(--neutral-550);
+		background-color: var(--neutral-550);
+		color: var(--neutral-100);
+		fill: var(--neutral-100);
 		font-size: 1.25rem;
 		font-weight: 600;
 		cursor: pointer;
 	}
-	/*:global(button:focus), :global(button:hover), :global(button:active){
+	:global(button:focus), :global(button:hover), :global(button:active){
 		background-color: var(--brand-500);
 		color: var(--neutral-500);
-	}*/
+		fill: var(--neutral-550);
+	}
 </style>

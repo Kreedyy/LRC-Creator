@@ -1,5 +1,11 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-<div class="buttonContainer">
-  <button>Test</button>
-</div>
+<script>
+	import Nav from "$lib/assets/Nav.svelte";
+
+</script>
+
+<header>
+  <Nav />
+</header>
+<button>
+  hellu
+</button>
