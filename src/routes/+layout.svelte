@@ -9,3 +9,15 @@
 </svelte:head>
 
 {@render children()}
+
+
+<style>
+	@font-face {
+    font-family: 'JetBrainsMono-Regular';
+    src: url('/fonts/JetBrainsMono-Regular.woff2') format(woff2);
+    font-display: swap;
+  }
+	:global(body){
+		font-family: 'JetBrainsMono-Regular';
+	}
+</style>
