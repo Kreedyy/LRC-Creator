@@ -1,8 +1,8 @@
 # TODO
 
-Uploading files
-Lyric editing
-Functionality with lrclib API
+Uploading files  
+Lyric editing  
+Functionality with lrclib API  
 
 # Considered Features
 
