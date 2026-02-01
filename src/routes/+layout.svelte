@@ -1,5 +1,7 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
+	import KreedyDev from '$lib/assets/KreedyDev.svelte';
+	import Nav from '$lib/assets/Nav.svelte';
 
 	let { children } = $props();
 </script>
@@ -9,6 +11,10 @@
 </svelte:head>
 
 <div>
+	<header>
+		<KreedyDev />
+		<Nav />
+	</header>
 	{@render children()}
 </div>
 
@@ -42,16 +48,20 @@
 		font-family: 'JetBrainsMono-Regular';
 		margin: 0;
 	}
-	div{
+	div {
 		min-height: 100vh;
 		background-color: var(--neutral-700);
+	}
+	header{
+		display: flex;
+		justify-content: space-between;
 	}
 	:global(p),
 	:global(h2) {
 		color: var(--neutral-100);
 		margin: 0;
 	}
-	:global(h1){
+	:global(h1) {
 		margin: 0;
 	}
 	:global(h1),
@@ -63,26 +73,44 @@
 	:global(a:active) {
 		color: var(--brand-500);
 	}
-	:global(.buttonContainer){
-		width: fit-content;
-		border: 2px solid var(--brand-500);
-		border-radius: 8px;
-	}
-	:global(button){
+	:global(button) {
 		height: 40px;
 		width: 100px;
+		background-color: var(--neutral-550);
 		border: 2px solid var(--neutral-200);
 		border-radius: 6px; /*NOTE: 2px less than .buttonContainer*/
-		background-color: var(--neutral-550);
+	}
+	:global(button),
+	:global(a.button) {
 		color: var(--neutral-100);
 		fill: var(--neutral-100);
 		font-size: 1.25rem;
 		font-weight: 600;
 		cursor: pointer;
 	}
-	:global(button:focus), :global(button:hover), :global(button:active){
+	:global(a.button) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 50px;
+		width: 50px;
+		text-decoration: none;
+	}
+	:global(a.button svg) {
+		width: 70%;
+	}
+	:global(button:focus),
+	:global(button:hover),
+	:global(button:active){
 		background-color: var(--brand-500);
 		color: var(--neutral-500);
 		fill: var(--neutral-550);
+	}
+	:global(a.button:focus),
+	:global(a.button:hover),
+	:global(a.button:active),
+	:global(a.selected) {
+		color: var(--brand-500);
+		fill: var(--brand-500);
 	}
 </style>
