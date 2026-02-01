@@ -97,7 +97,7 @@
 		text-decoration: none;
 	}
 	:global(a.button svg) {
-		width: 70%;
+		width: 85%;
 	}
 	:global(button:focus),
 	:global(button:hover),
