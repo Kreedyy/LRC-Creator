@@ -19,7 +19,7 @@
 	<main>
 		{@render children()}
 	</main>
-    <AudioPlayerBar />
+  <AudioPlayerBar />
 </div>
 
 <style>
@@ -51,12 +51,12 @@
 	:global(body) {
 		font-family: 'JetBrainsMono-Regular';
 		margin: 0;
+		background-color: var(--neutral-700);
 	}
 	div {
 		display: flex;
 		flex-direction: column;
-		height: 100svh;
-		background-color: var(--neutral-700);
+		height: 100vh;
 	}
 	header {
 		display: flex;

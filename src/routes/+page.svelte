@@ -7,7 +7,7 @@
 </div>
 
 <style>
-	div {
+	.test {
 		display: flex;
 		flex: 1;
 		justify-content: center;
