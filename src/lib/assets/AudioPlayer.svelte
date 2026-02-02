@@ -249,11 +249,9 @@
 	.speedButton{
 		background: none;
 		border: none;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		font-size: 1rem;
 		font-family: 'JetBrainsMono-Regular';
+		padding: 0;
 	}
 	.speedText{
 		cursor: pointer;
