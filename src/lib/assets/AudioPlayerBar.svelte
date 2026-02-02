@@ -46,7 +46,8 @@
 <style>
 	.bar {
 		display: flex;
-		align-items: end;
+		/*align-items: end;*/
+		align-items: center;
 	}
 	button {
 		background: none;

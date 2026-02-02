@@ -65,5 +65,6 @@
 	nav {
 		display: flex;
 		justify-content: end;
+		padding: 0.5rem;
 	}
 </style>

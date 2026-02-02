@@ -76,8 +76,8 @@
 	function formatTime(seconds: number): string {
 		const mins = Math.floor(seconds / 60);
 		const secs = Math.floor(seconds % 60);
-		const centiseconds = Math.floor((seconds % 1) * 1000);
-		return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}.${centiseconds.toString().padStart(3, '0')}`;
+		const centiseconds = Math.floor((seconds % 1) * 100);
+		return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')}`;
 	}
 
 	$effect(() => {
@@ -119,15 +119,6 @@
 	</div>
 </div>
 <div class="volumeContainer">
-	<input
-		class="volume"
-		type="range"
-		min="0"
-		max="1"
-		step="0.01"
-		value={volume}
-		oninput={changeVolume}
-	/>
 	<button class="mute" onclick={() => toggleMute(!isMuted)}>
 		{#if Math.round(volume * 100) <= 0}
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
@@ -149,6 +140,15 @@
 			>
 		{/if}
 	</button>
+		<input
+		class="volume"
+		type="range"
+		min="0"
+		max="1"
+		step="0.01"
+		value={volume}
+		oninput={changeVolume}
+	/>
 </div>
 
 <style>
@@ -171,26 +171,33 @@
 		width: 75px;
 	}
 	.volumeContainer {
-		position: fixed;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
+		/*
+		position: fixed;
+		flex-direction: column;
 		height: 100px;
 		width: 35px;
 		right: 10px;
 		bottom: 5px;
+		*/
+
 	}
 
 	.volume {
-		padding-top: 45px;
 		width: 60px;
+		margin-right: 1rem;
+		margin-left: 0.5rem;
+		/*
 		rotate: -90deg;
+		padding-top: 45px;
+		*/
 	}
 	.inputs {
 		display: flex;
 		flex: 1;
-		padding-right: 60px;
+		padding-right: 1.5rem;
 	}
 	.inputs p {
 		margin-left: 1.5rem;
