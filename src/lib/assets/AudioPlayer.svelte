@@ -94,10 +94,28 @@
 		onplay={() => (isPlaying = true)}
 		onpause={() => (isPlaying = false)}
 	></audio>
-	<button onclick={togglePlay}>Play</button>
+	<button class="playToggle" onclick={togglePlay}>
+		{#if isPlaying}
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+				><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path
+					d="M176 96C149.5 96 128 117.5 128 144L128 496C128 522.5 149.5 544 176 544L240 544C266.5 544 288 522.5 288 496L288 144C288 117.5 266.5 96 240 96L176 96zM400 96C373.5 96 352 117.5 352 144L352 496C352 522.5 373.5 544 400 544L464 544C490.5 544 512 522.5 512 496L512 144C512 117.5 490.5 96 464 96L400 96z"
+				/></svg
+			>
+		{:else}
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+				><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path
+					d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"
+				/></svg
+			>
+		{/if}
+	</button>
 	<!--Just for testing-->
 	<div class="inputs">
-		<p>{formatTime(currentTime)}</p>
+		<div class="time">
+			<p>{formatTime(currentTime)}</p>
+			<p>/</p>
+			<p>{formatTime(duration)}</p>
+		</div>
 		<input
 			class="seek"
 			type="range"
@@ -117,8 +135,7 @@
 			oninput={changeSpeed}
 		/>
 	</div>
-</div>
-<div class="volumeContainer">
+	<div class="volumeContainer">
 	<button class="mute" onclick={() => toggleMute(!isMuted)}>
 		{#if Math.round(volume * 100) <= 0}
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
@@ -140,7 +157,7 @@
 			>
 		{/if}
 	</button>
-		<input
+	<input
 		class="volume"
 		type="range"
 		min="0"
@@ -150,8 +167,22 @@
 		oninput={changeVolume}
 	/>
 </div>
+</div>
+
 
 <style>
+	.playToggle {
+		padding: 0;
+		fill: var(--neutral-100);
+		width: 35px;
+		height: 35px;
+		border: 0;
+		cursor: pointer;
+		background: none;
+	}
+	.playToggle:hover {
+		fill: var(--brand-500);
+	}
 	.mute {
 		padding: 0;
 		fill: var(--neutral-100);
@@ -166,6 +197,7 @@
 	}
 	.seek {
 		width: 100%;
+		margin-left: 0.5rem;
 	}
 	.speed {
 		width: 75px;
@@ -174,6 +206,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		margin-left: 0.5rem;
 		/*
 		position: fixed;
 		flex-direction: column;
@@ -182,7 +215,6 @@
 		right: 10px;
 		bottom: 5px;
 		*/
-
 	}
 
 	.volume {
@@ -197,17 +229,28 @@
 	.inputs {
 		display: flex;
 		flex: 1;
-		padding-right: 1.5rem;
+		align-items: center;
 	}
 	.inputs p {
 		margin-left: 1.5rem;
 		margin-right: 0.5rem;
 	}
+	.inputs p:first-of-type {
+		margin-left: 0.5rem;
+	}
 	.player {
 		display: flex;
 		flex: 1;
 	}
-	input {
+		input{
 		margin: 0;
+			background-color: none;
+	}
+	.time{
+		display: flex;
+	}
+	.time p{
+		margin: 0;
+		margin-left: 0.5rem;
 	}
 </style>

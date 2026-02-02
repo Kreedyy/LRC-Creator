@@ -48,6 +48,7 @@
 		display: flex;
 		/*align-items: end;*/
 		align-items: center;
+		margin-bottom: 0.5rem;
 	}
 	button {
 		background: none;
