@@ -18,8 +18,8 @@
 	</header>
 	<main>
 		{@render children()}
-		<AudioPlayerBar />
 	</main>
+    <AudioPlayerBar />
 </div>
 
 <style>
@@ -55,7 +55,7 @@
 	div {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
+		min-height: 100dvh;
 		background-color: var(--neutral-700);
 	}
 	header {
