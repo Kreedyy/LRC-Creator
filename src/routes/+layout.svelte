@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AudioPlayer from '$lib/assets/AudioPlayer.svelte';
+	import AudioPlayerBar from '$lib/assets/AudioPlayerBar.svelte';
 	import favicon from '$lib/assets/favicon.svg';
 	import KreedyDev from '$lib/assets/KreedyDev.svelte';
 	import Nav from '$lib/assets/Nav.svelte';
@@ -18,7 +18,7 @@
 	</header>
 	<main>
 		{@render children()}
-		<AudioPlayer />
+		<AudioPlayerBar />
 	</main>
 </div>
 
@@ -85,14 +85,15 @@
 	:global(a:active) {
 		color: var(--brand-500);
 	}
+	/*
 	:global(button) {
 		height: 40px;
 		width: 100px;
 		background-color: var(--neutral-550);
 		border: 2px solid var(--neutral-200);
-		border-radius: 6px; /*NOTE: 2px less than .buttonContainer*/
+		border-radius: 6px; NOTE: 2px less than .buttonContainer
 	}
-	:global(button),
+	:global(button),*/
 	:global(a.button) {
 		color: var(--neutral-100);
 		fill: var(--neutral-100);
@@ -111,13 +112,13 @@
 	:global(a.button svg) {
 		width: 85%;
 	}
-	:global(button:focus),
+	/*:global(button:focus),
 	:global(button:hover),
 	:global(button:active) {
 		background-color: var(--brand-500);
 		color: var(--neutral-500);
 		fill: var(--neutral-550);
-	}
+	}*/
 	:global(a.button:focus),
 	:global(a.button:hover),
 	:global(a.button:active),

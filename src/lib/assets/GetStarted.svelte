@@ -51,7 +51,7 @@
 	.started {
 		text-align: center;
 		font-size: 2rem;
-    margin-bottom: 1rem;
+		margin-bottom: 1rem;
 	}
 	.tip {
 		text-align: center;
