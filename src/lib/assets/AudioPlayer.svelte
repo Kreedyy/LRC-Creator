@@ -224,7 +224,6 @@
 		border: 0;
 		cursor: pointer;
 		margin-left: 0.5rem;
-		margin-right: 0.5rem;
 	}
 	.upload svg {
 		width: 35px;
@@ -239,6 +238,7 @@
 		border: 0;
 		cursor: pointer;
 		background: none;
+		margin-left: 0.5rem;
 	}
 	.playToggle:hover {
 		fill: var(--brand-500);
@@ -279,8 +279,9 @@
 		display: flex;
 		flex: 1;
 		align-items: center;
+		padding-right: 1rem;
 	}
-	.player p {
+	p {
 		margin-left: 1rem;
 		margin-right: 0.5rem;
 	}
@@ -288,6 +289,7 @@
 		display: flex;
 		flex: 1;
 		padding-bottom: 0.5rem;
+		flex-wrap: wrap;
 	}
 	.time {
 		display: flex;
@@ -314,10 +316,11 @@
 		font-size: 1rem;
 		font-family: 'JetBrainsMono-Regular';
 		padding: 0;
-	}
-	.speedText{
 		cursor: pointer;
+	}
+		.speedText{
 		text-decoration: underline;
+		margin-left: 0;
 	}
 	:global(.volume) {
 		min-width: 60px;
@@ -330,5 +333,6 @@
 		*/
 	}
 	@media only screen and (max-width: 800px){
+
 	}
 </style>
