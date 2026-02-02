@@ -150,7 +150,7 @@
 			>
 		{/if}
 	</button>
-	<div class="inputs">
+	<div class="seekContainer">
 		<div class="time">
 			<p>{formatTime(currentTime)}</p>
 			<p>/</p>
@@ -163,7 +163,9 @@
 			bind:value={currentTime}
 			oninput={handleSeek}
 		/>
-		<button class="speedButton" onclick={() => speed = 1}>
+	</div>
+	<div class="speedContainer">
+				<button class="speedButton" onclick={() => speed = 1}>
 			<p class="speedText">{speed.toFixed(2)}x</p>
 		</button>
 		
@@ -214,7 +216,6 @@
 		display: flex;
 		/*align-items: end;*/
 		align-items: center;
-		margin-bottom: 0.5rem;
 	}
 	.upload {
 		background: none;
@@ -268,19 +269,25 @@
 		bottom: 5px;
 		*/
 	}
+	.speedContainer{
+				display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
-	.inputs {
+	.seekContainer {
 		display: flex;
 		flex: 1;
 		align-items: center;
 	}
-	.inputs p {
+	.player p {
 		margin-left: 1rem;
 		margin-right: 0.5rem;
 	}
 	.player {
 		display: flex;
 		flex: 1;
+		padding-bottom: 0.5rem;
 	}
 	.time {
 		display: flex;
@@ -290,7 +297,7 @@
 		margin-left: 0.5rem;
 	}
 
-	/*Styling for RangeInputs by setting class arg*/
+	/*Styling for RangeseekContainer by setting class arg*/
 	:global(.seek) {
 		width: 100%;
 		margin-left: 0.5rem;
@@ -323,5 +330,15 @@
 		*/
 	}
 	@media only screen and (max-width: 800px){
+		.player{
+			display: grid;
+			grid-template-rows: 1fr 1fr;
+		}
+		.player *{
+			grid-row: 1;
+		}
+		.bar{
+			grid-row: 2;
+		}
 	}
 </style>
