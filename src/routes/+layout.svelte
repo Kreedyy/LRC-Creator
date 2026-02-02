@@ -55,8 +55,7 @@
 	div {
 		display: flex;
 		flex-direction: column;
-		height: 100dvh;
-        max-height: 100dvh;
+		height: 100svh;
 		background-color: var(--neutral-700);
 	}
 	header {
