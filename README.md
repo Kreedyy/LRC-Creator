@@ -1,5 +1,5 @@
 # LRC Creator
-Web alternative to [LRCGET](https://github.com/tranxuanthang/lrcget), inspired by [https://github.com/magic-akari/lrc-maker](https://github.com/magic-akari/lrc-maker)
+Web alternative to [LRCGET](https://github.com/tranxuanthang/lrcget), inspired by [https://github.com/magic-akari/lrc-maker](https://github.com/magic-akari/lrc-maker).
 
 ## TODO
 
