@@ -128,7 +128,7 @@
 			bind:value={currentTime}
 			oninput={handleSeek}
 		/>
-		<p>{speed.toFixed(2)}x</p>
+		<p class="speedText" onclick={() => speed = 1}>{speed.toFixed(2)}x</p>
 		<RangeInput
 			class="speed"
 			min={0.25}
@@ -238,10 +238,15 @@
 		margin-left: 0.5rem;
 		display: flex;
 		align-items: center;
+		min-width: 255px;
 	}
 	:global(.speed) {
 		min-width: 75px;
 		width: 75px;
+	}
+	.speedText{
+		cursor: pointer;
+		text-decoration: underline;
 	}
 	:global(.volume) {
 		min-width: 60px;
@@ -253,4 +258,10 @@
 		padding-top: 45px;
 		*/
 	}
+	/*
+	@media only screen and (max-width: 800px){
+		.player{
+			flex-wrap: wrap;
+		}
+	}*/
 </style>
