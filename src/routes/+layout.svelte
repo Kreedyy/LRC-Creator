@@ -15,7 +15,9 @@
 		<KreedyDev />
 		<Nav />
 	</header>
-	{@render children()}
+	<main>
+		{@render children()}
+	</main>
 </div>
 
 <style>
@@ -49,6 +51,8 @@
 		margin: 0;
 	}
 	div {
+		display: flex;
+		flex-direction: column;
 		min-height: 100vh;
 		background-color: var(--neutral-700);
 	}
@@ -56,8 +60,14 @@
 		display: flex;
 		justify-content: space-between;
 	}
+	main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
 	:global(p),
-	:global(h2) {
+	:global(h2),
+	:global(li) {
 		color: var(--neutral-100);
 		margin: 0;
 	}
