@@ -134,8 +134,7 @@
 			/></svg
 		>
 	</button>
-</div>
-	<button class="playToggle" onclick={togglePlay}>
+			<button class="playToggle" onclick={togglePlay}>
 		{#if isPlaying}
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
 				><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path
@@ -150,6 +149,7 @@
 			>
 		{/if}
 	</button>
+</div>
 	<div class="seekContainer">
 		<div class="time">
 			<p>{formatTime(currentTime)}</p>
@@ -333,6 +333,18 @@
 		*/
 	}
 	@media only screen and (max-width: 800px){
-
+		.player{
+			justify-content: space-evenly;
+		}
+	.seekContainer{
+		flex: 100%;
+	}
+	.bar, .volumeContainer, .speedContainer{
+		order: 1;
+		margin-left: 1rem;
+		margin-right: 1rem;
+		margin-top: 0.5rem;
+	}
+  
 	}
 </style>
