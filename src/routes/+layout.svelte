@@ -44,7 +44,8 @@
 
 		--neutral-100: oklch(0.95 0.005 289.62);
 		--neutral-200: oklch(0.85 0.01 289.62);
-		--neutral-550: oklch(0.25 0.0287 289.62);
+		--neutral-450: oklch(0.25 0.0287 289.62);
+		--neutral-400: oklch(33.301% 0.05415 290.54);
 		--neutral-500: oklch(0.174 0.0287 289.62);
 		--neutral-700: oklch(0.12 0.02 289.62);
 		--neutral-900: oklch(0.08 0.015 289.62);
@@ -96,7 +97,7 @@
 	:global(button) {
 		height: 40px;
 		width: 100px;
-		background-color: var(--neutral-550);
+		background-color: var(--neutral-450);
 		border: 2px solid var(--neutral-200);
 		border-radius: 6px; NOTE: 2px less than .buttonContainer
 	}
@@ -107,6 +108,6 @@
 	:global(button:active) {
 		background-color: var(--brand-500);
 		color: var(--neutral-500);
-		fill: var(--neutral-550);
+		fill: var(--neutral-450);
 	}*/
 </style>

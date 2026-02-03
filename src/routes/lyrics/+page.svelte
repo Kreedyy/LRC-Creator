@@ -22,8 +22,13 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+
 		align-items: center;
 		padding: 2rem;
+	}
+	:global(.showResults){
+		z-index: 2;
+		height: 75%;
+		max-height: 500px;
 	}
 </style>

@@ -38,7 +38,8 @@
 show buttons for importing plain and synced lyrics or mark as instrumental if instrumental
 -->
 
-<div class="container">
+{#if data}
+	<div class="showResults">
 	{#each data as result}
 		<div class="result">
 			<p>{result.trackName}</p>
@@ -64,27 +65,30 @@ show buttons for importing plain and synced lyrics or mark as instrumental if in
 		</div>
 	{/each}
 </div>
+{/if}
 
 <style>
 	.lyricButtons{
 		display: flex;
 		gap: 0.5rem;
 	}
-	.container {
+	.showResults {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 		overflow: scroll;
 		position: fixed;
+		
+		border: 2px solid var(--brand-500);
+		border-radius: 0.25rem;
+		backdrop-filter: blur(3px);
 	}
 	.result {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		background-color: var(--neutral-550);
+		background-color: var(--neutral-400);
 		padding: 1rem;
-		border: 2px solid var(--brand-500);
-		border-radius: 0.25rem;
 	}
 	.album {
 		display: flex;

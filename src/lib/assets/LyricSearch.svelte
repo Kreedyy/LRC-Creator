@@ -36,7 +36,7 @@ no synced lyrics -> return null
 		font-size: 1rem;
 		padding: 0;
 		margin: 0;
-		background-color: var(--neutral-550);
+		background-color: var(--neutral-450);
 		border: 2px solid var(--brand-500);
 		color: var(--neutral-100);
 		padding-left: 0.5rem;
@@ -51,7 +51,7 @@ no synced lyrics -> return null
 	.searchInput {
 		padding-top: 0.25rem;
 		padding-bottom: 0.25rem;
-		background: var(--neutral-550);
+		background: var(--neutral-450);
 		border: 2px solid var(--brand-500);
 		color: var(--neutral-100);
 		font-size: 1rem;

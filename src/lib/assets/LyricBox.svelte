@@ -35,7 +35,7 @@
 		resize: none;
 		overflow-y: scroll;
 		border: 2px solid var(--brand-500);
-		background: var(--neutral-550);
+		background: var(--neutral-450);
 		width: 100%;
 		max-width: 750px;
 		height: 100%;
