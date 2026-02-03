@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import GetStarted from '$lib/assets/GetStarted.svelte';
 </script>
 
