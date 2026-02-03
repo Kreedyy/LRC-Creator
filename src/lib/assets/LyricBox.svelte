@@ -46,7 +46,6 @@
 <style>
 	button{
 		position: fixed;
-		margin-bottom: 1px;
 		font-size: 1.25rem;
 		background: var(--neutral-450);
 		color: var(--neutral-100);
