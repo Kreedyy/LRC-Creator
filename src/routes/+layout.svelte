@@ -1,6 +1,6 @@
 <script lang="ts">
 	import AudioPlayerBar from '$lib/assets/AudioPlayerBar.svelte';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon.png';
 	import KreedyDev from '$lib/assets/KreedyDev.svelte';
 	import Nav from '$lib/assets/Nav.svelte';
 
