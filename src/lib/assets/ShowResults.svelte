@@ -1,16 +1,16 @@
 <script lang="ts">
 	let {
-		data = $bindable(),
+		result = $bindable(),
 		userPick = $bindable(),
 		getSynced = $bindable()
 	}: {
-		data: any;
+		result: any;
 		userPick: any;
 		getSynced: boolean;
 	} = $props<{}>();
 
 	// $effect(() => {
-	// 	console.log(data);
+	// 	console.log(result);
 	// });
 	function setUserPick(getSyncedLyrics: boolean, result: any) {
 		userPick = result;
@@ -38,29 +38,29 @@
 show buttons for importing plain and synced lyrics or mark as instrumental if instrumental
 -->
 
-{#if data}
+{#if result}
 	<div class="showResults">
-		{#each data as result}
+		{#each result as item}
 			<div class="result">
-				<p>{result.trackName}</p>
+				<p>{item.trackName}</p>
 				<div class="lyricButtons">
 					<p class="duration">
-						{formatTime(result.duration)}
+						{formatTime(item.duration)}
 					</p>
-					{#if result.plainLyrics || result.syncedLyrics}
+					{#if item.plainLyrics || item.syncedLyrics}
 						<!--Checks if lyrics exist, if json returns null/undefined these will be false-->
-						{#if result.plainLyrics}
-							<button class="plain" onclick={() => setUserPick(false, result)}>Plain</button>
+						{#if item.plainLyrics}
+							<button class="plain" onclick={() => setUserPick(false, item)}>Plain</button>
 						{/if}
-						{#if result.syncedLyrics}
-							<button class="synced" onclick={() => setUserPick(true, result)}>Synced</button>
+						{#if item.syncedLyrics}
+							<button class="synced" onclick={() => setUserPick(true, item)}>Synced</button>
 						{/if}
 					{:else}
 						<p>(Instrumental)</p>
 					{/if}
 				</div>
 				<div class="album">
-					<p>{result.albumName} - {result.artistName}</p>
+					<p>{item.albumName} - {item.artistName}</p>
 				</div>
 			</div>
 		{/each}
