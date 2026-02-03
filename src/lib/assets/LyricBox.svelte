@@ -6,7 +6,6 @@
 </script>
 
 <textarea>
-{data}
 </textarea>
 
 <style>

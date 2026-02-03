@@ -23,12 +23,13 @@ no synced lyrics -> return null
     result = await response.json();
   }
   
-  let userSearch = $state<string>();
+  let userSearch = $state<string>('');
   
 </script>
 
 
-<input class="searchInput" type="text" bind:value={result}>
+<input class="searchInput" type="text" bind:value={userSearch}>
+<button onclick={() => search(userSearch)}>test</button>
 
 <style>
   .searchInput{
