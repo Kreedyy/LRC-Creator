@@ -1,21 +1,13 @@
 <script lang="ts">
   let {
-    artist,
-    album,
-    track,
-    lyrics,
-    duration
+    data
   } = $props<{
-    artist?: string;
-    album?: string;
-    track?: string;
-    lyrics?: string;
-    duration?: number;
+    data?: any;
   }>();
 </script>
 
 <textarea>
-{lyrics}
+  
 </textarea>
 
 <style>

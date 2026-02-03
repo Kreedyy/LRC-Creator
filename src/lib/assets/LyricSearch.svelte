@@ -8,7 +8,6 @@ no synced lyrics -> return null
 -->
 
 <script lang="ts">
-	import { onMount } from "svelte";
 
   function reformatInput (input:string){
     let formattedInput: string = input.replace(/ /g, '+');
@@ -20,7 +19,6 @@ no synced lyrics -> return null
 
     const response = await fetch(`/api/lyrics?q=${reformatInput(input)}`);
     const data = await response.json();
-    console.log(data);
   }
   
   let userSearch = $state<string>();
