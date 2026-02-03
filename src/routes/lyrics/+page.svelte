@@ -14,7 +14,7 @@
 	<!--Showcase of results from data and handles user pick-->
 	<ShowResults bind:userPick={track} bind:getSynced={getSyncedLyrics} {data} />
 	<!--Processes user pick by filling textarea with lyrics-->
-	<LyricBox {track} />
+	<LyricBox {track} {getSyncedLyrics} />
 </div>
 
 <style>

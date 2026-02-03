@@ -23,7 +23,7 @@
 	<textarea>
 		{track.syncedLyrics}
 	</textarea>
-	{:else}
+	{:else if !getSyncedLyrics}
 	<textarea>
 		{track.plainLyrics}
 	</textarea>
