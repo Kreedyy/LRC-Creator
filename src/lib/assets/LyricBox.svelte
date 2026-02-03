@@ -77,7 +77,7 @@
   	width: 750px;
 		height: calc(
 			100% - 0.5rem - 4px - 37px 
-		); /*0.5rem from padding top, 4px for border, 37px for padding bottom*/
+		); /*0.5rem from padding top, 4px for border (2px * 2), 37px for padding bottom*/
 		color: var(--neutral-100);
 		padding: 0.5rem;
 		margin: 0;
