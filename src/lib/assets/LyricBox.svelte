@@ -1,8 +1,16 @@
 <script lang="ts">
   let {
-    lyrics
+    artist,
+    album,
+    track,
+    lyrics,
+    duration
   } = $props<{
+    artist?: string;
+    album?: string;
+    track?: string;
     lyrics?: string;
+    duration?: number;
   }>();
 </script>
 
