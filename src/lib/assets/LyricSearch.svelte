@@ -25,13 +25,19 @@ no synced lyrics -> return null
 	let userSearch = $state<string>('');
 </script>
 
-<label for="searchInput">Search track, artist or album</label>
 <div>
+	<label for="searchInput">Search track, artist or album</label>
+<div class="input">
 	<input id="searchInput" class="searchInput" type="text" bind:value={userSearch} />
 	<button onclick={() => search(userSearch)}>Search</button>
 </div>
+</div>
 
 <style>
+	.input{
+		display: flex;
+		gap: 0.5rem;
+	}
 	button {
 		font-size: 1rem;
 		padding: 0;
@@ -49,6 +55,7 @@ no synced lyrics -> return null
 		color: var(--neutral-100);
 	}
 	.searchInput {
+		flex: 1;
 		padding-top: 0.25rem;
 		padding-bottom: 0.25rem;
 		background: var(--neutral-450);
