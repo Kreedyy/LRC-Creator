@@ -65,6 +65,50 @@
 	nav {
 		display: flex;
 		justify-content: end;
-		padding: 0.5rem;
+		padding-top: 0.75rem;
+		padding-right: 0.75rem;
+	}
+	a {
+				color: var(--neutral-100);
+		fill: var(--neutral-100);
+		font-size: 1.25rem;
+		font-weight: 600;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 45px;
+		width: 45px;
+		text-decoration: none;
+		margin-left: 0.5rem;
+	}
+	svg {
+		width: 100%;
+	}
+	a:focus,
+	a:hover,
+	a:active,
+	a.selected {
+		color: var(--brand-500);
+		fill: var(--brand-500);
+	}
+		@media only screen and (max-width: 500px){
+			nav{
+						padding-top: 0.5rem;
+		padding-right: 0.5rem;
+			}
+					a{
+					height: 37.5px;
+		width: 37.5px;
+		}
+	}
+				@media only screen and (max-width: 440px){
+
+	}
+			@media only screen and (max-width: 400px){
+		a{
+					height: 30px;
+		width: 30px;
+		}
 	}
 </style>

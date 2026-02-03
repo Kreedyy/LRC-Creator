@@ -13,7 +13,7 @@
 
 <div>
 	<header>
-		<!--<KreedyDev />-->
+		<KreedyDev />
 		<Nav />
 	</header>
 	<main>
@@ -94,24 +94,7 @@
 		border-radius: 6px; NOTE: 2px less than .buttonContainer
 	}
 	:global(button),*/
-	:global(a.button) {
-		color: var(--neutral-100);
-		fill: var(--neutral-100);
-		font-size: 1.25rem;
-		font-weight: 600;
-		cursor: pointer;
-	}
-	:global(a.button) {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 50px;
-		width: 50px;
-		text-decoration: none;
-	}
-	:global(a.button svg) {
-		width: 85%;
-	}
+
 	/*:global(button:focus),
 	:global(button:hover),
 	:global(button:active) {
@@ -119,11 +102,5 @@
 		color: var(--neutral-500);
 		fill: var(--neutral-550);
 	}*/
-	:global(a.button:focus),
-	:global(a.button:hover),
-	:global(a.button:active),
-	:global(a.selected) {
-		color: var(--brand-500);
-		fill: var(--brand-500);
-	}
+
 </style>
