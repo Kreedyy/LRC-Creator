@@ -17,7 +17,7 @@
 			/></svg
 		>
 		<p>
-			Paste in lyrics from <a href="https://lrclib.net/">LRCLIB</a> or
+			<a href="/lyrics">Search for lyrics</a> from <a href"https://lrclib.net/">LRCLIB</a> or copy & paste from
 			<a href="https://genius.com/">Genius</a>
 		</p>
 	</div>
