@@ -1,5 +1,6 @@
 // FORMATTING:
-// Example usage from ShowResults.svelte, for future reference use this when submitting
+// Example usage from ShowResults.svelte, for future reference use formatLyrics when submitting
+//
 // function setUserPick(getSynced: boolean, item: any) {
 // 	item.plainLyrics = formatLyrics(item?.plainLyrics);
 // 	item.syncedLyrics = formatLyrics(item?.syncedLyrics);
@@ -11,14 +12,14 @@ export function formatLyrics(lyrics: string): string{
   return removeTimestampSpace(removeEmptyLyrics(removeEmptyLines(lyrics)));
 }
 
-// Replace all \n\n with \n, remove empty lines and remove trailing
+// Replace all \n\n... with \n, remove empty lines and remove trailing
 function removeEmptyLines(lyrics: string): string {
 	return lyrics
 		.split('\n') // Split by newline into an array
 		.map((line) => line.trim()) // Remove lines with only whitespaces
 		.join('\n') // Connect array into one string
 		.replace(/\n{2,}/g, '\n') // Replace multiple newlines into just one for consistency
-		.trim(); // Remove trailing newling
+		.trim(); // Remove trailing newline
 }
 
 // Remove all empty synced lyrics, example: "[mm:ss.xx] "

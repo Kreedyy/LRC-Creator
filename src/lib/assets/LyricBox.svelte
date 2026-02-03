@@ -1,4 +1,5 @@
 <script lang="ts">
+		import { formatLyrics } from '$lib/assets/FormatLyrics';
 	let {
 		userPick = $bindable(),
 		getSyncedLyrics = $bindable()
@@ -9,6 +10,13 @@
 	function setPlainOrSyncedLyrics(syncedLyrics: boolean) {
 		lyrics = syncedLyrics ? userPick.syncedLyrics : userPick.plainLyrics;
 	}
+
+	function format() {
+		if (lyrics) {
+			lyrics = formatLyrics(lyrics);
+		}
+	}
+
 	$effect(() => {
 		if (userPick) {
 			setPlainOrSyncedLyrics(getSyncedLyrics);
@@ -28,19 +36,40 @@
 .plainLyrics string
 .syncedLyrics
 -->
-<textarea bind:value={lyrics}> </textarea>
+<div>
+	<button onclick={format}>
+		Format
+	</button>
+	<textarea bind:value={lyrics}> </textarea>
+</div>
 
 <style>
+	button{
+		position: fixed;
+		margin-bottom: 1px;
+		font-size: 1.25rem;
+		background: var(--neutral-450);
+		color: var(--neutral-100);
+		border: 2px solid var(--brand-500);
+		display: flex;
+	}
+	div{
+		width: 100%;
+		max-width: fit-content;
+		justify-content: end;
+		align-items: end;
+		height: 100%;
+		display: flex;
+	}
 	textarea {
 		resize: none;
 		overflow-y: scroll;
 		border: 2px solid var(--brand-500);
 		background: var(--neutral-450);
-		width: calc(
-			100% - 1rem - 4px
-		); /*To counteract padding and border width so textarea stays inside of page*/
-		max-width: 750px;
-		height: 100%;
+  	width: 750px; /*To counteract padding and border width so textarea stays inside of page*/
+		height: calc(
+			100% - 1rem - 6px
+		);
 		color: var(--neutral-100);
 		padding: 0.5rem;
 	}
