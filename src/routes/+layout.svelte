@@ -13,7 +13,7 @@
 
 <div>
 	<header>
-		<KreedyDev />
+		<!--<KreedyDev />-->
 		<Nav />
 	</header>
 	<main>
