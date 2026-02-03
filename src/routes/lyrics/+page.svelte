@@ -8,12 +8,12 @@
 </script>
 
 <div>
-	<LyricSearch bind:result={data} />
 	<!--Fetch results and assign to data-->
-	<ShowResults bind:userPick={track} {data} />
+	<LyricSearch bind:result={data} />
 	<!--Showcase of results from data and handles user pick-->
-	<LyricBox {track} />
+	<ShowResults bind:userPick={track} {data} />
 	<!--Processes user pick by filling textarea with lyrics-->
+	<LyricBox {track} />
 </div>
 
 <style>
