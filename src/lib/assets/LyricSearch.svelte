@@ -62,7 +62,8 @@ no synced lyrics -> return null
 		color: var(--neutral-100);
 	}
 	.searchInput {
-		flex: 1;
+		max-width: 208px;
+		width: 100%;
 		padding-top: 0.25rem;
 		padding-bottom: 0.25rem;
 		background: var(--neutral-450);

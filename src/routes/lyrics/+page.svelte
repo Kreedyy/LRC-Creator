@@ -32,4 +32,10 @@
 		height: 75%;
 		max-height: 500px;
 	}
+	@media only screen and (max-width: 600px){
+		div{
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+	}
 </style>
