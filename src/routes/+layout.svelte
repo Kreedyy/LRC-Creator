@@ -50,9 +50,11 @@
 		--neutral-900: oklch(0.08 0.015 289.62);
 	}
 	:global(body) {
-		font-family: 'JetBrainsMono-Regular';
 		margin: 0;
 		background-color: var(--neutral-700);
+	}
+	:global(body), :global(button), :global(input), :global(textarea){
+		font-family: 'JetBrainsMono-Regular';
 	}
 	div {
 		display: flex;
@@ -86,6 +88,7 @@
 	:global(a:active) {
 		color: var(--brand-500);
 	}
+
 	/*
 	:global(button) {
 		height: 40px;

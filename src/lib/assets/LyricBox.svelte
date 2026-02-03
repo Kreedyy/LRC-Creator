@@ -1,16 +1,32 @@
 <script lang="ts">
 	let { track = $bindable() }: { track: any } = $props<{}>();
-	//$effect(() => {
-	//	console.log(track);
-	//});
-	//Transform data here
+	$effect(() => {
+		console.log(track);
+	});
+	// Transform data here
 </script>
 
-<textarea> </textarea>
+<!--
+.trackName string
+.name string //Same as .trackName?
+.albumName string
+.artistName string
+.duration number
+.id number
+.instrumental bool
+.plainLyrics string
+.syncedLyrics
+-->
+
+{#if track != undefined}
+	<textarea>
+		{track.syncedLyrics}
+	</textarea>
+{/if}
+
 
 <style>
 	textarea {
-		font-family: 'JetBrainsMono-Regular';
 		resize: none;
 		overflow-y: scroll;
 		border: 2px solid var(--brand-500);

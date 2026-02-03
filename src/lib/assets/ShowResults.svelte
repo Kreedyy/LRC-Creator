@@ -7,9 +7,9 @@
 		userPick: any;
 	} = $props<{}>();
 
-	$effect(() => {
-		console.log(data);
-	});
+	// $effect(() => {
+	// 	console.log(data);
+	// });
 </script>
 
 <!--
@@ -21,19 +21,31 @@
 .id number
 .instrumental bool
 .plainLyrics string
+.syncedLyrics
 -->
 
 <div class="container">
 	{#each data as result}
-		<div class="result">
-			<p>{result.trackName}</p>
-		</div>
+		<button onclick={() => userPick = result}>
+			<div class="result">
+				<p>{result.trackName}</p>
+				<p>{result.artistName}</p>
+			</div>
+		</button>
+
 	{/each}
 </div>
 
 <style>
 	.container{
+		position: fixed;
 		display: flex;
 		flex-direction: column;
+	}
+	button{
+		cursor: pointer;
+		background: transparent;
+		padding: 0;
+		border: 0;
 	}
 </style>

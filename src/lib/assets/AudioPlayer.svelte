@@ -305,7 +305,6 @@
 		background: none;
 		border: none;
 		font-size: 1rem;
-		font-family: 'JetBrainsMono-Regular';
 		padding: 0;
 		cursor: pointer;
 	}

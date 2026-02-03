@@ -30,7 +30,6 @@ no synced lyrics -> return null
 
 <style>
 	.searchInput {
-		font-family: 'JetBrainsMono-Regular';
 		background: var(--neutral-550);
 		border: 2px solid var(--brand-500);
 		color: var(--neutral-100);
