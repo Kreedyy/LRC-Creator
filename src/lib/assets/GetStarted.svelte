@@ -30,12 +30,12 @@
 		>
 		<p>Start syncing lyrics</p>
 	</div>
-	<a href="/"
-		><!--Link to example video placed in static/assets-->
+	<!--<a href="/"
+		>Link to example video placed in static/assets-->
 		<p class="tip">
-			TIP: Sync lines preemptively, sync close to end<br /> of last word being sung BEFORE next line starts
+			TIP: Sync close to end of last word<br />being sung, BEFORE next line starts
 		</p>
-	</a>
+	<!--</a>-->
 </div>
 
 <style>
@@ -55,7 +55,6 @@
 	}
 	.tip {
 		text-align: center;
-		color: var(--brand-500);
 		margin-top: 1rem;
 	}
 	svg {
