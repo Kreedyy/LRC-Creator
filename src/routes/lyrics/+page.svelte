@@ -4,7 +4,7 @@
 	import ShowResults from '$lib/assets/ShowResults.svelte';
 
 	let result = $state<any>();
-	let track = $state<any>();
+	let userPick = $state<any>();
 	let getSyncedLyrics = $state<boolean>();
 </script>
 
@@ -12,9 +12,9 @@
 	<!--Fetch results and assign to data-->
 	<LyricSearch bind:result />
 	<!--Showcase of results from data and handles user pick-->
-	<ShowResults bind:userPick={track} bind:getSynced={getSyncedLyrics} {result} />
+	<ShowResults bind:userPick bind:getSyncedLyrics {result} />
 	<!--Processes user pick by filling textarea with lyrics-->
-	<LyricBox {track} {getSyncedLyrics} />
+	<LyricBox {userPick} {getSyncedLyrics} />
 </div>
 
 <style>

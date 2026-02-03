@@ -2,19 +2,19 @@
 	let {
 		result = $bindable(),
 		userPick = $bindable(),
-		getSynced = $bindable()
+		getSyncedLyrics = $bindable()
 	}: {
 		result: any;
 		userPick: any;
-		getSynced: boolean;
+		getSyncedLyrics: boolean;
 	} = $props<{}>();
 
 	// $effect(() => {
 	// 	console.log(result);
 	// });
-	function setUserPick(getSyncedLyrics: boolean, result: any) {
+	function setUserPick(getSynced: boolean, result: any) {
 		userPick = result;
-		getSynced = getSyncedLyrics;
+		getSyncedLyrics = getSynced;
 	}
 
 	function formatTime(seconds: number): string {

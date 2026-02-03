@@ -1,16 +1,16 @@
 <script lang="ts">
 	let {
-		track = $bindable(),
+		userPick = $bindable(),
 		getSyncedLyrics = $bindable()
-	}: { track: any; getSyncedLyrics: boolean } = $props<{}>();
+	}: { userPick: any; getSyncedLyrics: boolean } = $props<{}>();
 
 	let lyrics = $state<string>();
 
 	function setPlainOrSyncedLyrics(syncedLyrics: boolean) {
-		lyrics = syncedLyrics ? track.syncedLyrics : track.plainLyrics;
+		lyrics = syncedLyrics ? userPick.syncedLyrics : userPick.plainLyrics;
 	}
 	$effect(() => {
-		if (track) {
+		if (userPick) {
 			setPlainOrSyncedLyrics(getSyncedLyrics);
 		}
 	});
