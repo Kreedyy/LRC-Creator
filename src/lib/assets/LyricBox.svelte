@@ -52,6 +52,15 @@
 		color: var(--neutral-100);
 		border: 2px solid var(--brand-500);
 		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: underline;
+		padding-top: 0.2rem;
+		padding-bottom: 0.25rem;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+		cursor: pointer;
+
 	}
 	div{
 		width: 100%;
