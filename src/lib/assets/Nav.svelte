@@ -28,7 +28,6 @@
 
 <nav>
 	<a
-		class="button"
 		href="/lyrics"
 		title="Lyric Editor"
 		onclick={() => setActive('lyrics')}
@@ -41,7 +40,6 @@
 		>
 	</a>
 	<a
-		class="button"
 		href="/sync"
 		title="Sync Lyrics"
 		onclick={() => setActive('sync')}
@@ -54,7 +52,6 @@
 		>
 	</a>
 	<a
-		class="button"
 		href="/settings"
 		title="Settings"
 		onclick={() => setActive('settings')}
@@ -67,7 +64,6 @@
 		>
 	</a>
 	<a
-		class="button"
 		href="https://github.com/Kreedyy/LRC-maker"
 		title="Repo"
 		onclick={() => setActive('github')}
