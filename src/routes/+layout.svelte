@@ -53,7 +53,10 @@
 		margin: 0;
 		background-color: var(--neutral-700);
 	}
-	:global(body), :global(button), :global(input), :global(textarea){
+	:global(body),
+	:global(button),
+	:global(input),
+	:global(textarea) {
 		font-family: 'JetBrainsMono-Regular';
 	}
 	div {

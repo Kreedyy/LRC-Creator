@@ -12,7 +12,7 @@
 	// $effect(() => {
 	// 	console.log(data);
 	// });
-	function setUserPick(getSyncedLyrics: boolean, result: any){
+	function setUserPick(getSyncedLyrics: boolean, result: any) {
 		userPick = result;
 		getSynced = getSyncedLyrics;
 	}
@@ -34,31 +34,31 @@ show buttons for importing plain and synced lyrics or mark as instrumental if in
 
 <div class="container">
 	{#each data as result}
-			<div class="result">
-				<p>{result.trackName}</p>
-				<p>{result.artistName}</p>
-				{#if result.plainLyrics || result.syncedLyrics} <!--Checks if lyrics exist, if json returns null/undefined these will be false-->
-					{#if result.plainLyrics}
-						<button onclick={() => setUserPick(false, result)}>Plain</button>
-					{/if}
-					{#if result.syncedLyrics}
-						<button onclick={() => setUserPick(true, result)}>Synced</button>
-					{/if}
-				{:else}
-					<p>(Instrumental)</p>
+		<div class="result">
+			<p>{result.trackName}</p>
+			<p>{result.artistName}</p>
+			{#if result.plainLyrics || result.syncedLyrics}
+				<!--Checks if lyrics exist, if json returns null/undefined these will be false-->
+				{#if result.plainLyrics}
+					<button onclick={() => setUserPick(false, result)}>Plain</button>
 				{/if}
-			</div>
-
+				{#if result.syncedLyrics}
+					<button onclick={() => setUserPick(true, result)}>Synced</button>
+				{/if}
+			{:else}
+				<p>(Instrumental)</p>
+			{/if}
+		</div>
 	{/each}
 </div>
 
 <style>
-	.container{
+	.container {
 		position: fixed;
 		display: flex;
 		flex-direction: column;
 	}
-	button{
+	button {
 		color: var(--neutral-100);
 		cursor: pointer;
 		background: transparent;

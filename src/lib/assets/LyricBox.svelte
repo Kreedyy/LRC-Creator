@@ -1,8 +1,8 @@
 <script lang="ts">
-	let { track = $bindable(), getSyncedLyrics = $bindable() }: { track: any, getSyncedLyrics: boolean } = $props<{}>();
-	$effect(() => {
-		console.log(track);
-	});
+	let {
+		track = $bindable(),
+		getSyncedLyrics = $bindable()
+	}: { track: any; getSyncedLyrics: boolean } = $props<{}>();
 	// Transform data here
 </script>
 
@@ -20,16 +20,15 @@
 
 {#if track != undefined}
 	{#if getSyncedLyrics}
-	<textarea>
-		{track.syncedLyrics}
-	</textarea>
-	{:else if !getSyncedLyrics}
-	<textarea>
-		{track.plainLyrics}
-	</textarea>
+		<textarea>
+			{track.syncedLyrics}
+		</textarea>
+	{:else}
+		<textarea>
+			{track.plainLyrics}
+		</textarea>
 	{/if}
 {/if}
-
 
 <style>
 	textarea {
