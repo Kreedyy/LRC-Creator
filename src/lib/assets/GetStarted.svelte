@@ -59,9 +59,21 @@
 		margin-top: 1rem;
 	}
 	svg {
+		height: 25px;
 		width: 25px;
+		min-height: 25px;
+		min-width: 25px;
 		fill: var(--brand-500);
 		margin-left: 0.5rem;
 		margin-right: 0.25rem;
+	}
+
+	@media only screen and (max-width: 625px) {
+		.col{
+			font-size: 1rem;
+		}
+		.started{
+			font-size: 1.5rem;
+		}
 	}
 </style>

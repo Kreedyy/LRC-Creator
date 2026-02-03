@@ -2,15 +2,17 @@
 	import GetStarted from '$lib/assets/GetStarted.svelte';
 </script>
 
-<div class="test">
+<div class="help">
 	<GetStarted />
 </div>
 
 <style>
-	.test {
+	.help {
 		display: flex;
 		flex: 1;
 		justify-content: center;
 		align-items: center;
+		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 </style>
