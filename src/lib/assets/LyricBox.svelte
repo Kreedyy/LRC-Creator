@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { track = $bindable() }: { track: any } = $props<{}>();
+	let { track = $bindable(), getSyncedLyrics = $bindable() }: { track: any, getSyncedLyrics: boolean } = $props<{}>();
 	$effect(() => {
 		console.log(track);
 	});
@@ -19,9 +19,15 @@
 -->
 
 {#if track != undefined}
+	{#if getSyncedLyrics}
 	<textarea>
 		{track.syncedLyrics}
 	</textarea>
+	{:else}
+	<textarea>
+		{track.plainLyrics}
+	</textarea>
+	{/if}
 {/if}
 
 
