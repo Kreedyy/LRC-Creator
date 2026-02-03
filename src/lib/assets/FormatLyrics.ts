@@ -1,4 +1,11 @@
 // FORMATTING:
+// Example usage from ShowResults.svelte, for future reference use this when submitting
+// function setUserPick(getSynced: boolean, item: any) {
+// 	item.plainLyrics = formatLyrics(item?.plainLyrics);
+// 	item.syncedLyrics = formatLyrics(item?.syncedLyrics);
+// 	userPick = item;
+// 	getSyncedLyrics = getSynced;
+// }
 
 export function formatLyrics(lyrics: string): string{
   return removeTimestampSpace(removeEmptyLyrics(removeEmptyLines(lyrics)));
