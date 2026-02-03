@@ -75,11 +75,24 @@
 		overflow-y: scroll;
 		border: 2px solid var(--brand-500);
 		background: var(--neutral-450);
-  	width: 750px; /*To counteract padding and border width so textarea stays inside of page*/
+  	width: 750px;
 		height: calc(
-			100% - 1rem - 6px
-		);
+			100% - 0.5rem - 4px - 37px 
+		); /*0.5rem from padding top, 4px for border, 37px for padding bottom*/
 		color: var(--neutral-100);
 		padding: 0.5rem;
+		margin: 0;
+		padding-bottom: 37px;
+	}
+	@media only screen and (max-width: 600px) {
+		textarea{
+			height: calc(
+			100% - 0.5rem - 4px - 33px 
+		);
+			padding-bottom: 33px;
+		}
+		button{
+					font-size: 1rem;
+		}
 	}
 </style>
