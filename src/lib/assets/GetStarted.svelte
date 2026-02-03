@@ -32,9 +32,9 @@
 	</div>
 	<!--<a href="/"
 		>Link to example video placed in static/assets-->
-		<p class="tip">
-			TIP: Sync close to end of last word<br />being sung, BEFORE next line starts
-		</p>
+	<p class="tip">
+		TIP: Sync close to end of last word<br />being sung, BEFORE next line starts
+	</p>
 	<!--</a>-->
 </div>
 

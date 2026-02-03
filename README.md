@@ -6,7 +6,7 @@ Web alternative to [LRCGET](https://github.com/tranxuanthang/lrcget), inspired b
 
 Uploading files  
 Lyric editing  
-Functionality with lrclib API
+Functionality with lrclib API (GET /api/search param 'q' & POST)
 
 ## Considered Features
 

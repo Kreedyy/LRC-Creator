@@ -105,8 +105,6 @@
 		margin: 0;
 		z-index: 1; /*Just so vanilla input doesnt prevent from interacting with custom made one*/
 	}
-
-	/* Hide the default thumb */
 	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		appearance: none;
