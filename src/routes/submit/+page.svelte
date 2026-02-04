@@ -41,6 +41,15 @@
 </div>
 
 <style>
+	input{
+		padding-top: 0.25rem;
+		padding-bottom: 0.25rem;
+		padding-left: 0.25rem;
+		background: var(--neutral-450);
+		border: 2px solid var(--brand-500);
+		color: var(--neutral-100);
+		font-size: 1rem;
+	}
 	.inputContainer{
 		display: flex;
 		gap: 2rem;
@@ -56,6 +65,7 @@
 		flex-direction: column;
 		align-items: center;
 		height: 100%;
+		width: 100%;
 		gap: 1rem;
 	}
 	.base {
@@ -65,5 +75,11 @@
 		gap: 1rem;
 		align-items: center;
 		padding: 2rem;
+	}
+		@media only screen and (max-width: 600px) {
+		.base {
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
 	}
 </style>

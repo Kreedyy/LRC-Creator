@@ -67,10 +67,12 @@
 		padding-right: 0.5rem;
 		cursor: pointer;
 	} */
-	div {
+	.lyricEditor {
 		/* justify-content: end;
 		align-items: end; */
 		display: flex;
+		width: 100%;
+		justify-content: center;
 	}
 	textarea {
 		resize: none;
@@ -86,13 +88,13 @@
 		margin: 0;
 		/*padding-bottom: 37px;*/
 	}
-	@media only screen and (max-width: 600px) {
+	/*@media only screen and (max-width: 600px) {
 		textarea {
 			height: calc(100% - 0.5rem - 4px - 33px);
-			/*padding-bottom: 33px;*/
+			padding-bottom: 33px;
 		}
-		/* button {
+		 button {
 			font-size: 1rem;
-		} */
-	}
+		} 
+	}*/
 </style>
