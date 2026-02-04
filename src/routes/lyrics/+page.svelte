@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import LyricBox from '$lib/assets/LyricBox.svelte';
 	import LyricSearch from '$lib/assets/LyricSearch.svelte';
 	import ShowResults from '$lib/assets/ShowResults.svelte';
@@ -8,6 +9,13 @@
 	let getSyncedLyrics = $state<boolean>();
 	let showResults = $state<boolean>(false);
 	let lyrics = $state<string>();
+
+	function navigateToSubmit(e: MouseEvent) {
+    e.preventDefault();
+    goto('/submit', { 
+      state: { lyrics, userPick, getSyncedLyrics } 
+    });
+  }
 </script>
 
 <div>
@@ -17,7 +25,7 @@
 	<ShowResults bind:userPick bind:getSyncedLyrics {result} bind:showResults />
 	<!--Processes user pick by filling textarea with lyrics-->
 	<LyricBox {userPick} {getSyncedLyrics} bind:lyrics />
-	<a href="/submit">Submitting to LRCLIB</a>
+	<a href="/submit" onclick={navigateToSubmit}>Submitting to LRCLIB</a>
 </div>
 
 <style>
