@@ -41,6 +41,7 @@ no synced lyrics -> return null
 			class="searchInput"
 			type="text"
 			bind:value={userSearch}
+			onkeydown={() => search(userSearch)}
 			onclick={setShowResults}
 		/>
 		<button onclick={() => search(userSearch)}>Search</button>
