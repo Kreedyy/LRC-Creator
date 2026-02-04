@@ -1,5 +1,5 @@
 <script lang="ts">
-		import { formatLyrics } from '$lib/assets/FormatLyrics';
+	import { formatLyrics } from '$lib/assets/FormatLyrics';
 	let {
 		userPick = $bindable(),
 		getSyncedLyrics = $bindable()
@@ -37,14 +37,12 @@
 .syncedLyrics
 -->
 <div>
-	<button onclick={format}>
-		Format
-	</button>
+	<button onclick={format}> Format </button>
 	<textarea bind:value={lyrics}> </textarea>
 </div>
 
 <style>
-	button{
+	button {
 		position: fixed;
 		font-size: 1.25rem;
 		background: var(--neutral-450);
@@ -59,9 +57,8 @@
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 		cursor: pointer;
-
 	}
-	div{
+	div {
 		width: 100%;
 		max-width: fit-content;
 		justify-content: end;
@@ -74,9 +71,9 @@
 		overflow-y: scroll;
 		border: 2px solid var(--brand-500);
 		background: var(--neutral-450);
-  	width: 750px;
+		width: 750px;
 		height: calc(
-			100% - 0.5rem - 4px - 37px 
+			100% - 0.5rem - 4px - 37px
 		); /*0.5rem from padding top, 4px for border (2px * 2), 37px for padding bottom*/
 		color: var(--neutral-100);
 		padding: 0.5rem;
@@ -84,14 +81,12 @@
 		padding-bottom: 37px;
 	}
 	@media only screen and (max-width: 600px) {
-		textarea{
-			height: calc(
-			100% - 0.5rem - 4px - 33px 
-		);
+		textarea {
+			height: calc(100% - 0.5rem - 4px - 33px);
 			padding-bottom: 33px;
 		}
-		button{
-					font-size: 1rem;
+		button {
+			font-size: 1rem;
 		}
 	}
 </style>

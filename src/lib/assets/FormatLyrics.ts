@@ -8,8 +8,11 @@
 // 	getSyncedLyrics = getSynced;
 // }
 
-export function formatLyrics(lyrics: string): string{
-  return removeTimestampSpace(removeEmptyLyrics(removeEmptyLines(lyrics)));
+export function formatLyrics(lyrics: string): string {
+	if (lyrics) {
+		return removeTimestampSpace(removeEmptyLyrics(removeEmptyLines(lyrics)));
+	}
+	return '';
 }
 
 // Replace all \n\n... with \n, remove empty lines and remove trailing
