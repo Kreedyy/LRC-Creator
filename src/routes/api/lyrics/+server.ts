@@ -9,3 +9,5 @@ export async function GET({ url, fetch }) {
 
 	return json(data);
 }
+
+//POST make sure every line is synced because lrclib requires it. if not return an error, if success then create a plain version without the timestamp since required

@@ -17,7 +17,7 @@
 </div>
 
 <style>
-	form{
+	form {
 		height: 100%;
 	}
 	div {
