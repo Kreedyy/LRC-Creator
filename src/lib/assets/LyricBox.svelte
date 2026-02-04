@@ -2,13 +2,16 @@
 	import { formatLyrics } from '$lib/assets/FormatLyrics';
 	let {
 		userPick = $bindable(),
-		getSyncedLyrics = $bindable()
-	}: { userPick: any; getSyncedLyrics: boolean } = $props<{}>();
-
-	let lyrics = $state<string>();
+		getSyncedLyrics = $bindable(true),
+		lyrics = $bindable()
+	}: { userPick?: any; getSyncedLyrics?: boolean; lyrics: string } = $props<{}>();
 
 	function setPlainOrSyncedLyrics(syncedLyrics: boolean) {
-		lyrics = syncedLyrics ? userPick.syncedLyrics : userPick.plainLyrics;
+		if (userPick.syncedLyrics) {
+			lyrics = syncedLyrics ? userPick.syncedLyrics : userPick.plainLyrics;
+		} else {
+			lyrics = userPick.plainLyrics;
+		}
 	}
 
 	function format() {

@@ -7,6 +7,7 @@
 	let userPick = $state<any>();
 	let getSyncedLyrics = $state<boolean>();
 	let showResults = $state<boolean>(false);
+	let lyrics = $state<string>();
 </script>
 
 <div>
@@ -15,12 +16,12 @@
 	<!--Showcase of results from data and handles user pick-->
 	<ShowResults bind:userPick bind:getSyncedLyrics {result} bind:showResults />
 	<!--Processes user pick by filling textarea with lyrics-->
-	<LyricBox {userPick} {getSyncedLyrics} />
+	<LyricBox {userPick} {getSyncedLyrics} bind:lyrics />
 	<a href="/submit">Submitting to LRCLIB</a>
 </div>
 
 <style>
-	a{
+	a {
 		font-size: 1.25rem;
 	}
 	div {
@@ -44,7 +45,7 @@
 			padding-left: 1rem;
 			padding-right: 1rem;
 		}
-		:global(.showResults){
+		:global(.showResults) {
 			width: calc(100% - 4rem);
 		}
 	}
