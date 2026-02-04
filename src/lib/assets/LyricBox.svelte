@@ -28,6 +28,8 @@
 	});
 	$effect(() => {
 		shared.lyrics = lyrics;
+		const timer = setTimeout(format, 3000);
+    return () => clearTimeout(timer);
 	});
 	// Transform data here
 </script>
