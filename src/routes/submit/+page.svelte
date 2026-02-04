@@ -1,21 +1,20 @@
 <script lang="ts">
-  import { page } from '$app/state';
-  import {globalLyrics} from '$lib/assets/GlobalLyrics.svelte'
+	import { globalLyrics } from '$lib/assets/GlobalLyrics.svelte';
 	import LyricBox from '$lib/assets/LyricBox.svelte';
 
-  let lyrics = globalLyrics.lyrics
+	let lyrics = globalLyrics.lyrics;
 
-  $effect(() => {
-    console.log(lyrics)
-  })
+	$effect(() => {
+		console.log(lyrics);
+	});
 </script>
 
 <div>
-  <LyricBox {lyrics}/>
+	<LyricBox {lyrics} />
 </div>
 
 <style>
-  	div {
+	div {
 		height: 100%;
 		display: flex;
 		flex-direction: column;

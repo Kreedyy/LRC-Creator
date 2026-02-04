@@ -1,3 +1,3 @@
 export const globalLyrics = $state<{
-  lyrics?: string;
+	lyrics?: string;
 }>({});

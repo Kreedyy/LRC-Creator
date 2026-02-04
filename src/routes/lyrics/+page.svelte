@@ -11,11 +11,11 @@
 	let showResults = $state<boolean>(false);
 	let lyrics = $state<string>();
 
-  function navigateToSubmit(e: MouseEvent) {
-    e.preventDefault();
-    globalLyrics.lyrics = lyrics;
-    goto('/submit');
-  }
+	function navigateToSubmit(e: MouseEvent) {
+		e.preventDefault();
+		globalLyrics.lyrics = lyrics;
+		goto('/submit');
+	}
 </script>
 
 <div>
