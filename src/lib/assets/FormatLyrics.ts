@@ -57,8 +57,10 @@ export function validatePayload(payload: {
 		errors.push('Duration must be greater than 0');
 	}
 
-	if (!payload.syncedLyrics || !validateLyrics(payload.syncedLyrics)) {
-		errors.push('Lyrics are required and must be synced');
+	if (!payload.syncedLyrics) {
+		errors.push('Lyrics are required');
+	} else if(!validateLyrics(payload.syncedLyrics)) {
+		errors.push('All lyrics must be synced');
 	}
 
 	return {
