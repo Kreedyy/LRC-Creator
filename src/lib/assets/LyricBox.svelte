@@ -46,12 +46,12 @@
 .syncedLyrics
 -->
 <div>
-	<button onclick={format}> Format </button>
+	<!--<button onclick={format}> Format </button>-->
 	<textarea bind:value={lyrics}> </textarea>
 </div>
 
 <style>
-	button {
+	/* button {
 		position: absolute;
 		font-size: 1.25rem;
 		background: var(--neutral-450);
@@ -66,12 +66,12 @@
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 		cursor: pointer;
-	}
+	} */
 	div {
 		width: 100%;
 		max-width: fit-content;
-		justify-content: end;
-		align-items: end;
+		/* justify-content: end;
+		align-items: end; */
 		height: 100%;
 		display: flex;
 	}
@@ -94,8 +94,8 @@
 			height: calc(100% - 0.5rem - 4px - 33px);
 			padding-bottom: 33px;
 		}
-		button {
+		/* button {
 			font-size: 1rem;
-		}
+		} */
 	}
 </style>
