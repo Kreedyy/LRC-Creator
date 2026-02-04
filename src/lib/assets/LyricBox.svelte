@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { formatLyrics } from '$lib/assets/FormatLyrics';
+	import { onMount } from 'svelte';
 	let {
 		userPick = $bindable(),
 		getSyncedLyrics = $bindable(true),

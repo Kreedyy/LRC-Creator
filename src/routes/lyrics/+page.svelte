@@ -3,6 +3,7 @@
 	import LyricBox from '$lib/assets/LyricBox.svelte';
 	import LyricSearch from '$lib/assets/LyricSearch.svelte';
 	import ShowResults from '$lib/assets/ShowResults.svelte';
+	import { globalLyrics } from '$lib/assets/GlobalLyrics.svelte';
 
 	let result = $state<any>();
 	let userPick = $state<any>();
@@ -10,11 +11,10 @@
 	let showResults = $state<boolean>(false);
 	let lyrics = $state<string>();
 
-	function navigateToSubmit(e: MouseEvent) {
+  function navigateToSubmit(e: MouseEvent) {
     e.preventDefault();
-    goto('/submit', { 
-      state: { lyrics, userPick, getSyncedLyrics } 
-    });
+    globalLyrics.lyrics = lyrics;
+    goto('/submit');
   }
 </script>
 
