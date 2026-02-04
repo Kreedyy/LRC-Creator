@@ -1,20 +1,25 @@
 <script lang="ts">
-	import { globalLyrics } from '$lib/assets/GlobalLyrics.svelte';
+	import { shared } from '$lib/assets/SharedData.svelte';
 	import LyricBox from '$lib/assets/LyricBox.svelte';
 
 	let lyrics = $state<string>();
-	lyrics = globalLyrics.lyrics;
+	lyrics = shared.lyrics;
 
 	$effect(() => {
-		globalLyrics.lyrics = lyrics;
+		shared.lyrics = lyrics;
 	});
 </script>
 
 <div>
-	<LyricBox {lyrics} />
+	<form>
+		<LyricBox {lyrics} />
+	</form>
 </div>
 
 <style>
+	form{
+		height: 100%;
+	}
 	div {
 		height: 100%;
 		display: flex;

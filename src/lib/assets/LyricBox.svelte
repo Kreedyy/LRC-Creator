@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { formatLyrics } from '$lib/assets/FormatLyrics';
-	import { globalLyrics } from '$lib/assets/GlobalLyrics.svelte';
+	import { shared } from '$lib/assets/SharedData.svelte';
 	let {
 		userPick = $bindable(),
 		getSyncedLyrics = $bindable(true),
@@ -27,7 +27,7 @@
 		}
 	});
 	$effect(() => {
-		globalLyrics.lyrics = lyrics;
+		shared.lyrics = lyrics;
 	});
 	// Transform data here
 </script>
