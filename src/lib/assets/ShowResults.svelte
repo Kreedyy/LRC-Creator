@@ -48,113 +48,182 @@
 />
 
 {#if result && showResults}
-	<div class="showResults" bind:this={resultsContainer}>
-		{#each result as item}
-			<div class="result">
-				<p>{item.trackName}</p>
-				<div class="lyricButtons">
-					<p class="duration">
-						{formatTime(item.duration)}
-					</p>
-					{#if item.plainLyrics || item.syncedLyrics}
-						<!--Checks if lyrics exist, if json returns null/undefined these will be false-->
-						{#if item.plainLyrics}
-							<button class="plain" onclick={() => setUserPick(false, item)}>Plain</button>
+	<div class="results-container" bind:this={resultsContainer}>
+		<div class="results-header">
+			<span class="results-count">{result.length} results</span>
+		</div>
+		<div class="results-list">
+			{#each result as item}
+				<div class="result-card">
+					<div class="result-info">
+						<p class="track-name">{item.trackName}</p>
+						<p class="album-artist">{item.albumName} · {item.artistName}</p>
+					</div>
+					<div class="result-actions">
+						<span class="duration">{formatTime(item.duration)}</span>
+						{#if item.plainLyrics || item.syncedLyrics}
+							{#if item.plainLyrics}
+								<button class="btn-plain" onclick={() => setUserPick(false, item)}>Plain</button>
+							{/if}
+							{#if item.syncedLyrics}
+								<button class="btn-synced" onclick={() => setUserPick(true, item)}>Synced</button>
+							{/if}
+						{:else}
+							<span class="instrumental">Instrumental</span>
 						{/if}
-						{#if item.syncedLyrics}
-							<button class="synced" onclick={() => setUserPick(true, item)}>Synced</button>
-						{/if}
-					{:else}
-						<span>Instrumental</span>
-					{/if}
+					</div>
 				</div>
-				<div class="album">
-					<p>{item.albumName} - {item.artistName}</p>
-				</div>
-			</div>
-		{/each}
+			{/each}
+		</div>
 	</div>
 {/if}
 
 <style>
-	span {
-		display: flex;
-		align-items: center;
-		color: rgb(75 85 99);
-		background-color: rgb(209 213 219);
-	}
-	.lyricButtons {
-		display: flex;
-		gap: 0.5rem;
-	}
-	.showResults {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		overflow: scroll;
+	.results-container {
 		position: absolute;
 		top: 167px;
+		left: 0;
+		right: 0;
 		height: calc(100% - 316px);
-
-		backdrop-filter: blur(4px);
+		display: flex;
+		flex-direction: column;
 		padding: 1rem;
+		overflow: hidden;
 	}
-	.result {
+
+	.results-header {
+		padding-bottom: 0.75rem;
+		margin-bottom: 0.5rem;
+		border-bottom: 1px solid var(--neutral-450);
+	}
+
+	.results-count {
+		font-size: 0.8125rem;
+		color: var(--neutral-200);
+	}
+
+	.results-list {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		background-color: var(--neutral-400);
-		padding: 1rem;
-		border: 2px solid var(--brand-500);
-		border-radius: 0.25rem;
+		overflow-y: auto;
+		padding-right: 0.5rem;
 	}
-	.album {
+
+	.result-card {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
+		padding: 0.875rem 1rem;
+		background: var(--neutral-500);
+		border-radius: var(--radius-md);
+		border-left: 3px solid var(--brand-500);
+		transition: all var(--transition);
 	}
-	.duration {
-		color: rgb(49 46 129);
-		background-color: rgb(199 210 254);
-		width: fit-content;
+
+	.result-card:hover {
+		background: var(--neutral-450);
 	}
-	.plain {
-		background-color: rgb(31 41 55); /*Match colors from LRCLIB*/
-		color: rgb(229 231 235);
+
+	.result-info {
+		flex: 1;
+		min-width: 0;
 	}
-	.synced {
-		background-color: rgb(22 101 52); /*Match colors from LRCLIB*/
-		color: rgb(187 247 208);
-	}
-	button {
-		font-size: 1rem;
+
+	.track-name {
+		font-size: 0.9375rem;
+		font-weight: 600;
 		color: var(--neutral-100);
+		margin: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.album-artist {
+		font-size: 0.8125rem;
+		color: var(--neutral-200);
+		margin: 0.25rem 0 0 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.result-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-shrink: 0;
+	}
+
+	.duration {
+		font-size: 0.75rem;
+		color: var(--brand-500);
+		background: var(--brand-900);
+		padding: 0.25rem 0.5rem;
+		border-radius: var(--radius-sm);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.btn-plain,
+	.btn-synced {
+		font-size: 0.75rem;
+		padding: 0.25rem 0.625rem;
+		border: none;
+		border-radius: var(--radius-sm);
 		cursor: pointer;
-		background: transparent;
-		padding: 0;
-		border: 0;
+		transition: all var(--transition);
 	}
-	.plain,
-	.synced,
-	.duration,
-	span {
-		border-radius: 0.25rem;
-		padding-top: 0.125rem;
-		padding-bottom: 0.125rem;
-		padding-left: 0.25rem;
-		padding-right: 0.25rem;
+
+	.btn-plain {
+		background: var(--neutral-400);
+		color: var(--neutral-100);
 	}
+
+	.btn-plain:hover {
+		background: var(--neutral-200);
+		color: var(--neutral-700);
+	}
+
+	.btn-synced {
+		background: var(--brand-500);
+		color: var(--neutral-700);
+	}
+
+	.btn-synced:hover {
+		background: var(--brand-400);
+	}
+
+	.instrumental {
+		font-size: 0.75rem;
+		color: var(--neutral-200);
+		background: var(--neutral-450);
+		padding: 0.25rem 0.5rem;
+		border-radius: var(--radius-sm);
+	}
+
 	@media only screen and (max-width: 800px) {
-		/*Hideous but works ig*/
-		.showResults {
+		.results-container {
 			top: 153px;
 			height: calc(100% - 331px);
 		}
 	}
+
 	@media only screen and (max-width: 400px) {
-		.showResults {
+		.results-container {
 			top: 144px;
 			height: calc(100% - 317px);
+		}
+
+		.result-card {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.75rem;
+		}
+
+		.result-actions {
+			width: 100%;
 		}
 	}
 </style>

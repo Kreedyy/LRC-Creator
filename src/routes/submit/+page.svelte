@@ -26,17 +26,11 @@
 		}
 	});
 
-	let artist = $state<string>();
-	artist = getSharedArtist();
-	let track = $state<string>();
-	track = getSharedTrack();
-	let album = $state<string>();
-	album = getSharedAlbum();
-
-	let lyrics = $state<string>();
-	lyrics = getSharedLyrics();
-	let duration = $state<number>();
-	duration = getSharedDuration();
+	let artist = $derived(getSharedArtist());
+	let track = $derived(getSharedTrack());
+	let album = $derived(getSharedAlbum());
+	let lyrics = $derived(getSharedLyrics());
+	let duration = $derived(getSharedDuration());
 
 	$effect(() => {
 		setSharedTrackData({ artist, track, album, lyrics, duration });
@@ -149,18 +143,36 @@
 					<input id="artist" required type="text" bind:value={artist} />
 				</div>
 				<div class="column">
-					<label for="album">Album</label>
-					<input id="album" type="text" bind:value={album} />
+					<label for="track">Track *</label>
+					<input id="track" required type="text" bind:value={track} />
 				</div>
 			</div>
 			<div class="trackDurationContainer">
 				<div class="column">
-					<label for="track">Track *</label>
-					<input id="track" required type="text" bind:value={track} />
+					<label for="album">Album</label>
+					<input id="album" type="text" bind:value={album} />
 				</div>
 				<div class="column">
 					<label for="duration">Duration (s) *</label>
-					<input id="duration" required type="text" bind:value={duration} />
+					<input
+						id="duration"
+						required
+						type="text"
+						inputmode="numeric"
+						bind:value={duration}
+						oninput={(e) => {
+							const numbers = e.currentTarget.value.replace(/[^0-9]/g, '').slice(0, 4);
+							e.currentTarget.value = numbers;
+							duration = Number(numbers) || 0;
+						}}
+						onpaste={(e) => {
+							e.preventDefault();
+							const paste = e.clipboardData?.getData('text') || '';
+							const numbers = paste.replace(/[^0-9]/g, '').slice(0, 4);
+							e.currentTarget.value = numbers;
+							duration = Number(numbers) || 0;
+						}}
+					/>
 				</div>
 			</div>
 		</div>
@@ -272,14 +284,7 @@
 	}
 
 	input {
-		padding-top: 0.25rem;
-		padding-bottom: 0.25rem;
-		padding-left: 0.25rem;
-		background: var(--neutral-450);
-		border: 2px solid var(--brand-500);
-		color: var(--neutral-100);
-		font-size: 1rem;
-		width: calc(100% - 0.5rem - 2px);
+		width: calc(100% - 1.5rem - 4px);
 	}
 	.inputContainer {
 		display: flex;

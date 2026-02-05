@@ -49,6 +49,13 @@
 		--neutral-500: oklch(0.174 0.0287 289.62);
 		--neutral-700: oklch(0.12 0.02 289.62);
 		--neutral-900: oklch(0.08 0.015 289.62);
+
+		--radius-sm: 6px;
+		--radius-md: 10px;
+		--radius-lg: 14px;
+		--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+		--shadow-md: 0 4px 16px rgba(0, 0, 0, 0.25);
+		--transition: 0.15s ease;
 	}
 	:global(body) {
 		margin: 0;
@@ -68,6 +75,7 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+		padding: 0.5rem;
 	}
 	main {
 		flex: 1;
@@ -93,21 +101,60 @@
 		color: var(--brand-500);
 	}
 
-	/*
+	/* ===== GLOBAL BUTTON STYLES ===== */
 	:global(button) {
-		height: 40px;
-		width: 100px;
+		font-size: 1rem;
+		padding: 0.5rem 1rem;
+		margin: 0;
 		background-color: var(--neutral-450);
-		border: 2px solid var(--neutral-200);
-		border-radius: 6px; NOTE: 2px less than .buttonContainer
+		border: 2px solid var(--brand-500);
+		border-radius: var(--radius-sm);
+		color: var(--neutral-100);
+		cursor: pointer;
+		transition: all var(--transition);
 	}
-	:global(button),*/
 
-	/*:global(button:focus),
-	:global(button:hover),
-	:global(button:active) {
+	:global(button:hover:not(:disabled)) {
 		background-color: var(--brand-500);
-		color: var(--neutral-500);
-		fill: var(--neutral-450);
-	}*/
+		color: var(--neutral-700);
+	}
+
+	:global(button:disabled) {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	/* ===== GLOBAL INPUT STYLES ===== */
+	:global(input[type='text']),
+	:global(input[type='number']),
+	:global(textarea) {
+		padding: 0.5rem 0.75rem;
+		background: var(--neutral-500);
+		border: 2px solid var(--neutral-400);
+		border-radius: var(--radius-sm);
+		color: var(--neutral-100);
+		font-size: 1rem;
+		outline: none;
+		transition: all var(--transition);
+	}
+
+	:global(input[type='text']:focus),
+	:global(input[type='number']:focus),
+	:global(textarea:focus) {
+		border-color: var(--brand-500);
+		background: var(--neutral-450);
+	}
+
+	:global(input::placeholder),
+	:global(textarea::placeholder) {
+		color: var(--neutral-200);
+		opacity: 0.5;
+	}
+
+	/* ===== GLOBAL LABEL STYLES ===== */
+	:global(label) {
+		color: var(--neutral-200);
+		font-size: 0.875rem;
+		margin-bottom: 0.25rem;
+	}
 </style>

@@ -34,56 +34,47 @@
 	});
 </script>
 
-<div class="lyricEditor">
-	<!--<button onclick={format}> Format </button>-->
-	<textarea bind:value={lyrics}> </textarea>
+<div class="lyric-editor">
+	<textarea bind:value={lyrics} placeholder="Paste or type your lyrics here..."></textarea>
 </div>
 
 <style>
-	/* button {
-		position: absolute;
-		font-size: 1.25rem;
-		background: var(--neutral-450);
-		color: var(--neutral-100);
-		border: 2px solid var(--brand-500);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-decoration: underline;
-		padding-top: 0.2rem;
-		padding-bottom: 0.25rem;
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
-		cursor: pointer;
-	} */
-	.lyricEditor {
-		/* justify-content: end;
-		align-items: end; */
+	.lyric-editor {
 		display: flex;
 		width: 100%;
+		height: 100%;
 		justify-content: center;
 	}
+
 	textarea {
 		resize: none;
-		overflow-y: scroll;
-		border: 2px solid var(--brand-500);
-		background: var(--neutral-450);
+		overflow-y: auto;
+		background: var(--neutral-500);
+		border: 2px solid var(--neutral-400);
+		border-radius: var(--radius-md);
 		width: 750px;
-		height: calc(
-			100% - 1rem - 4px
-		); /*0.5rem from padding top, 4px for border (2px * 2), 37px for padding bottom*/
+		height: calc(100% - 2rem - 4px);
 		color: var(--neutral-100);
-		padding: 0.5rem;
+		padding: 1rem;
 		margin: 0;
-		/*padding-bottom: 37px;*/
+		outline: none;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		transition: all var(--transition);
 	}
-	/*@media only screen and (max-width: 600px) {
+
+	textarea:focus {
+		border-color: var(--brand-500);
+		background: var(--neutral-450);
+	}
+
+	textarea::placeholder {
+		color: var(--neutral-200);
+		opacity: 0.6;
+	}
+	@media only screen and (max-width: 500px) {
 		textarea {
-			height: calc(100% - 0.5rem - 4px - 33px);
-			padding-bottom: 33px;
+			font-size: 0.75rem;
 		}
-		 button {
-			font-size: 1rem;
-		} 
-	}*/
+	}
 </style>

@@ -59,7 +59,7 @@ export function validatePayload(payload: {
 
 	if (!payload.syncedLyrics) {
 		errors.push('Lyrics are required');
-	} else if(!validateLyrics(payload.syncedLyrics)) {
+	} else if (!validateLyrics(payload.syncedLyrics)) {
 		errors.push('All lyrics must be synced');
 	}
 

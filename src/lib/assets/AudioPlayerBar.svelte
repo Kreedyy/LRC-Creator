@@ -7,4 +7,7 @@
 </div>
 
 <style>
+	.bar {
+		border-top: 1px solid var(--neutral-450);
+	}
 </style>

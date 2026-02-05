@@ -1,23 +1,17 @@
 <script lang="ts">
-	let trackColor: string = '#ddd';
-	let trackFillColor: string = '#00e0b1';
-	let thumbColor: string = '#00e0b1';
 	let {
 		min = 0,
 		max = 100,
 		step = 1,
 		value = $bindable(0),
 		oninput,
-		class: className = '' // Easier to style in separate file, see AudioPlayer.svelte
+		class: className = ''
 	} = $props<{
 		min?: number;
 		max?: number;
 		step?: number;
 		value?: number;
 		oninput?: (event: Event) => void;
-		trackColor?: string;
-		trackFillColor?: string;
-		thumbColor?: string;
 		class?: string;
 	}>();
 
@@ -31,7 +25,7 @@
 
 		const percentage = max - min !== 0 ? (value - min) / (max - min) : 0;
 		const containerWidth = containerElement.offsetWidth;
-		const thumbWidth = 14;
+		const thumbWidth = 12;
 
 		thumbPosition = percentage * (containerWidth - thumbWidth);
 		fillWidth = percentage * containerWidth;
@@ -52,20 +46,17 @@
 </script>
 
 <div class="range-container {className}" bind:this={containerElement}>
-	<div class="track" style="--track-color: {trackColor};">
-		<div
-			class="track-fill"
-			style="--track-fill-color: {trackFillColor}; width: {fillWidth}px;"
-		></div>
+	<div class="track">
+		<div class="track-fill" style="width: {fillWidth}px;"></div>
 	</div>
-	<div class="thumb" style="--thumb-color: {thumbColor}; left: {thumbPosition}px;"></div>
+	<div class="thumb" style="left: {thumbPosition}px;"></div>
 	<input bind:this={inputElement} type="range" {min} {max} {step} {value} oninput={handleInput} />
 </div>
 
 <style>
 	.range-container {
 		position: relative;
-		height: 14px;
+		height: 12px;
 		display: flex;
 		align-items: center;
 	}
@@ -74,26 +65,25 @@
 		position: absolute;
 		width: 100%;
 		height: 4px;
-		background: var(--track-color);
+		background: var(--neutral-400);
+		border-radius: 4px;
 	}
 
 	.track-fill {
 		height: 100%;
-		background: var(--track-fill-color);
-		transition: left 0.05s ease-out;
-	}
-	.track,
-	.track-fill {
-		border-radius: 10px;
+		background: var(--brand-500);
+		border-radius: 4px;
+		transition: width 0.05s ease-out;
 	}
 
 	.thumb {
 		position: absolute;
-		width: 14px;
-		height: 14px;
-		background: var(--thumb-color);
+		width: 12px;
+		height: 12px;
+		background: var(--brand-500);
 		border-radius: 50%;
 		transition: left 0.05s ease-out;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 	}
 
 	input[type='range'] {
@@ -103,28 +93,29 @@
 		background: transparent;
 		cursor: pointer;
 		margin: 0;
-		z-index: 1; /*Just so vanilla input doesnt prevent from interacting with custom made one*/
+		z-index: 1;
 	}
+
 	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		appearance: none;
-		width: 14px;
-		height: 14px;
+		width: 12px;
+		height: 12px;
 		background: transparent;
 		cursor: pointer;
 	}
 
 	input[type='range']::-moz-range-thumb {
-		width: 14px;
-		height: 14px;
+		width: 12px;
+		height: 12px;
 		background: transparent;
 		border: none;
 		cursor: pointer;
 	}
 
 	input[type='range']::-ms-thumb {
-		width: 14px;
-		height: 14px;
+		width: 12px;
+		height: 12px;
 		background: transparent;
 		border: none;
 		cursor: pointer;
