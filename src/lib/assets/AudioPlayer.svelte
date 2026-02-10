@@ -28,6 +28,10 @@
 		}
 	}
 
+	function handleLinkSelect(url: string): void {
+		audioUrl = url;
+	}
+
 	function openUploadModal(): void {
 		showUploadModal = true;
 	}
@@ -116,7 +120,7 @@
 </script>
 
 {#if showUploadModal}
-	<UploadContainer onclose={closeUploadModal} onfileselect={handleFileSelect} />
+	<UploadContainer onclose={closeUploadModal} onfileselect={handleFileSelect} onlinksubmit={handleLinkSelect} />
 {/if}
 
 <div class="player">

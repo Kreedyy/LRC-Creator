@@ -2,7 +2,7 @@
 	import UploadFiles from './UploadFiles.svelte';
 	import UploadLinks from './UploadLinks.svelte';
 
-	let { onclose, onfileselect }: { onclose: () => void; onfileselect: (file: File) => void } =
+	let { onclose, onfileselect, onlinksubmit }: { onclose: () => void; onfileselect: (file: File) => void; onlinksubmit: (url: string) => void } =
 		$props();
 
 	let activeTab = $state<'files' | 'links'>('files');
@@ -50,7 +50,7 @@
 		{#if activeTab === 'files'}
 			<UploadFiles {onfileselect} {onclose} />
 		{:else}
-			<UploadLinks {onclose} />
+			<UploadLinks {onlinksubmit} {onclose} />
 		{/if}
 	</div>
 </div>

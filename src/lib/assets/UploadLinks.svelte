@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { onclose }: { onclose: () => void } = $props();
+	let { onlinksubmit, onclose }: { onlinksubmit: (url: string) => void; onclose: () => void } = $props();
 
 	let linkUrl = $state<string>('');
 	let isLoading = $state<boolean>(false);
@@ -16,7 +16,7 @@
 		const isValid = await validateLink(linkUrl);
 
 		if (isValid) {
-			console.log('Link submitted:', linkUrl);
+			onlinksubmit(linkUrl.trim());
 			onclose();
 		}
 		isLoading = false;
