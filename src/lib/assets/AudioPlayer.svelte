@@ -3,8 +3,12 @@
 	import RangeInput from './RangeInput.svelte';
 	import { setSharedTrackData } from './SharedData.svelte';
 	import UploadContainer from './UploadContainer.svelte';
+	import type { PlaybackBackend } from './playback/Types';
+	import { createBackend, detectSourceType } from './playback/CreateBackend';
 
-	let audioElement: HTMLAudioElement;
+	let youtubeContainer: HTMLDivElement;
+	let soundcloudContainer: HTMLDivElement;
+
 	let isPlaying = $state<boolean>(false);
 	let currentTime = $state<number>(0);
 	let duration = $state<number>(0);
@@ -13,23 +17,80 @@
 	let previousVolume = $state<number>(0.5);
 	let isMuted = $state<boolean>(false);
 	let animationFrameId = $state<number>(0);
-	let selectedFile: File | null = null;
-	let audioUrl = $state<string | null>(null);
 	let showUploadModal = $state<boolean>(false);
+	let speedDisabled = $state<boolean>(false);
+
+	let backend: PlaybackBackend | null = null;
+	let blobUrl: string | null = null;
+
+	const callbacks = {
+		onPlay: () => {
+			isPlaying = true;
+		},
+		onPause: () => {
+			isPlaying = false;
+		},
+		onEnded: () => {
+			isPlaying = false;
+		},
+		onDurationChange: (d: number) => {
+			duration = d;
+			setSharedTrackData({ duration: Math.round(d) });
+		},
+		onError: (msg: string) => {
+			console.error('Playback error:', msg);
+		}
+	};
+
+	async function loadSource(source: string, isFile: boolean = false): Promise<void> {
+		if (backend) {
+			backend.destroy();
+			backend = null;
+		}
+		if (blobUrl && blobUrl !== source) {
+			URL.revokeObjectURL(blobUrl);
+			blobUrl = null;
+		}
+
+		isPlaying = false;
+		currentTime = 0;
+		duration = 0;
+
+		const sourceType = isFile ? ('html5' as const) : detectSourceType(source);
+		const newBackend = createBackend(sourceType, callbacks, {
+			youtubeContainer,
+			soundcloudContainer
+		});
+		backend = newBackend;
+
+		speedDisabled = !newBackend.supportsPlaybackRate;
+
+		try {
+			await newBackend.load(source);
+			newBackend.setVolume(isMuted ? 0 : volume);
+			const actualRate = newBackend.setPlaybackRate(speed);
+			if (actualRate !== speed) {
+				speed = actualRate;
+			}
+		} catch (err) {
+			console.error('Failed to load source:', err);
+			backend = null;
+		}
+	}
 
 	function handleFileSelect(file: File): void {
 		if (file.type.startsWith('audio/')) {
-			selectedFile = file;
-			if (audioUrl) {
-				URL.revokeObjectURL(audioUrl);
+			if (blobUrl) {
+				URL.revokeObjectURL(blobUrl);
 			}
-			audioUrl = URL.createObjectURL(file);
+			blobUrl = URL.createObjectURL(file);
 			extractMetadataFromFile(file);
+			loadSource(blobUrl, true);
 		}
 	}
 
 	function handleLinkSelect(url: string): void {
-		audioUrl = url;
+		loadSource(url);
 	}
 
 	function openUploadModal(): void {
@@ -41,6 +102,7 @@
 	}
 
 	function toggleMute(toggle: boolean): void {
+		if (!backend) return;
 		if (toggle) {
 			previousVolume = volume;
 			volume = 0;
@@ -49,25 +111,21 @@
 			volume = previousVolume;
 			isMuted = false;
 		}
-		audioElement.volume = volume;
+		backend.setVolume(volume);
 	}
 
 	function togglePlay(): void {
-		if (duration <= 0) {
-			return;
-		}
+		if (!backend || duration <= 0) return;
 		if (isPlaying) {
-			audioElement.pause();
+			backend.pause();
 		} else {
-			audioElement.volume = volume;
-			audioElement.play();
+			backend.play();
 		}
-		isPlaying = !isPlaying;
 	}
 
 	function updateTime(): void {
-		if (audioElement && !audioElement.paused) {
-			currentTime = audioElement.currentTime;
+		if (backend && isPlaying) {
+			currentTime = backend.getCurrentTime();
 			animationFrameId = requestAnimationFrame(updateTime);
 		}
 	}
@@ -79,31 +137,33 @@
 			if (animationFrameId) {
 				cancelAnimationFrame(animationFrameId);
 			}
-			currentTime = audioElement.currentTime;
+			if (backend) {
+				currentTime = backend.getCurrentTime();
+			}
 		}
 	}
 
-	function loadDuration(): void {
-		duration = audioElement.duration;
-		setSharedTrackData({ duration: Math.round(duration) });
-	}
-
 	function handleSeek(event: Event): void {
+		if (!backend) return;
 		const input = event.target as HTMLInputElement;
-		audioElement.currentTime = parseFloat(input.value);
-		currentTime = audioElement.currentTime;
+		const seekTime = parseFloat(input.value);
+		backend.seekTo(seekTime);
+		currentTime = seekTime;
 	}
 
 	function changeSpeed(event: Event): void {
+		if (!backend) return;
 		const input = event.target as HTMLInputElement;
-		speed = parseFloat(input.value);
-		audioElement.playbackRate = speed;
+		const requestedRate = parseFloat(input.value);
+		const actualRate = backend.setPlaybackRate(requestedRate);
+		speed = actualRate;
 	}
 
 	function changeVolume(event: Event): void {
+		if (!backend) return;
 		const input = event.target as HTMLInputElement;
 		volume = parseFloat(input.value);
-		audioElement.volume = volume;
+		backend.setVolume(volume);
 	}
 
 	function formatTime(seconds: number): string {
@@ -120,18 +180,18 @@
 </script>
 
 {#if showUploadModal}
-	<UploadContainer onclose={closeUploadModal} onfileselect={handleFileSelect} onlinksubmit={handleLinkSelect} />
+	<UploadContainer
+		onclose={closeUploadModal}
+		onfileselect={handleFileSelect}
+		onlinksubmit={handleLinkSelect}
+	/>
 {/if}
 
 <div class="player">
-	<audio
-		bind:this={audioElement}
-		src={audioUrl}
-		onloadedmetadata={loadDuration}
-		onended={() => (isPlaying = false)}
-		onplay={() => (isPlaying = true)}
-		onpause={() => (isPlaying = false)}
-	></audio>
+	<div class="embed-containers" aria-hidden="true">
+		<div bind:this={youtubeContainer}></div>
+		<div bind:this={soundcloudContainer}></div>
+	</div>
 
 	<div class="controls">
 		<button class="icon-btn upload" title="Upload Audio" onclick={openUploadModal}>
@@ -175,8 +235,12 @@
 		/>
 	</div>
 
-	<div class="speed-container">
-		<button class="speed-btn" onclick={() => changeSpeed({ target: { value: speed == 1 ? 1.5 : 1 } } as unknown as Event)}>
+	<div class="speed-container" class:speed-disabled={speedDisabled}>
+		<button
+			class="speed-btn"
+			disabled={speedDisabled}
+			onclick={() => changeSpeed({ target: { value: speed == 1 ? 1.5 : 1 } } as unknown as Event)}
+		>
 			{speed.toFixed(2)}x
 		</button>
 		<RangeInput
@@ -218,6 +282,7 @@
 
 <style>
 	.player {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -225,6 +290,15 @@
 		padding: 0.75rem 1rem;
 		background: var(--neutral-500);
 		flex-wrap: wrap;
+	}
+
+	.embed-containers {
+		position: absolute;
+		left: -9999px;
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		pointer-events: none;
 	}
 
 	.controls {
@@ -320,8 +394,13 @@
 		gap: 0.5rem;
 	}
 
+	.speed-disabled {
+		opacity: 0.35;
+		pointer-events: none;
+	}
+
 	.speed-btn {
-		font-size: .9375rem;
+		font-size: 0.9375rem;
 		padding: 0.25rem 0.5rem;
 		background: var(--neutral-450);
 		border: 1px solid var(--neutral-400);
@@ -389,7 +468,8 @@
 			height: 18px;
 		}
 
-		.time-display, .speed-btn {
+		.time-display,
+		.speed-btn {
 			font-size: 0.75rem;
 		}
 

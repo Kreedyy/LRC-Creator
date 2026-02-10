@@ -2,8 +2,15 @@
 	import UploadFiles from './UploadFiles.svelte';
 	import UploadLinks from './UploadLinks.svelte';
 
-	let { onclose, onfileselect, onlinksubmit }: { onclose: () => void; onfileselect: (file: File) => void; onlinksubmit: (url: string) => void } =
-		$props();
+	let {
+		onclose,
+		onfileselect,
+		onlinksubmit
+	}: {
+		onclose: () => void;
+		onfileselect: (file: File) => void;
+		onlinksubmit: (url: string) => void;
+	} = $props();
 
 	let activeTab = $state<'files' | 'links'>('files');
 </script>

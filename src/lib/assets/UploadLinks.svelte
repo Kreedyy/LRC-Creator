@@ -1,37 +1,27 @@
 <script lang="ts">
-	import { getSharedDuration } from "./SharedData.svelte";
+	import { detectSourceType } from './playback/CreateBackend';
 
-	let { onlinksubmit, onclose }: { onlinksubmit: (url: string) => void; onclose: () => void } = $props();
+	let { onlinksubmit, onclose }: { onlinksubmit: (url: string) => void; onclose: () => void } =
+		$props();
 
 	let linkUrl = $state<string>('');
 	let isLoading = $state<boolean>(false);
 	let errorMsg = $state<string>('');
 
-	const youtubePattern = /^https?:\/\/(www\.|music\.|m\.)?youtu(be\.com\/(watch\?v=|shorts\/)|\.be\/).+/;
-	const soundcloudPattern = /^https?:\/\/(www\.|m\.|on\.)?soundcloud\.com\/.+/;
 	const directAudioPattern = /^https?:\/\/.+\.(mp3|wav|ogg|m4a|flac|aac|opus|webm)(\?.*)?$/i;
 
 	async function validateLink(url: string): Promise<boolean> {
-		if (youtubePattern.test(url)) {
-			return await validateYoutubeUrl(url);
-		}
-		if (soundcloudPattern.test(url)) {
-			return await validateSoundcloudUrl(url);
+		const sourceType = detectSourceType(url);
+
+		if (sourceType === 'youtube' || sourceType === 'soundcloud') {
+			return true;
 		}
 		if (directAudioPattern.test(url)) {
 			return await validateAudioUrl(url);
 		}
+		errorMsg =
+			'Unrecognized URL. Supports YouTube, SoundCloud, and direct audio links (.mp3, .wav, etc.)';
 		return false;
-	}
-
-	async function validateYoutubeUrl(url: string): Promise<boolean> {
-		// Placeholder for YouTube URL validation logic
-		return true;
-	}
-
-	async function validateSoundcloudUrl(url: string): Promise<boolean> {
-		// Placeholder for SoundCloud URL validation logic
-		return true;
 	}
 
 	async function validateAudioUrl(url: string): Promise<boolean> {
@@ -66,11 +56,11 @@
 			if (isValid) {
 				onlinksubmit(linkUrl.trim());
 				onclose();
-			} else {
-				errorMsg = 'Invalid audio URL. Please provide a valid link.';
+			} else if (!errorMsg) {
+				errorMsg = 'Invalid audio URL. Please check and try again.';
 			}
 		} catch {
-			errorMsg = 'Failed to load audio. Check the URL and try again.';
+			errorMsg = 'Failed to validate URL. Check the link and try again.';
 		} finally {
 			isLoading = false;
 		}
