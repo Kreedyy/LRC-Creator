@@ -356,6 +356,10 @@
 			margin-top: 0.5rem;
 			margin-bottom: 0.5rem;
 		}
+		:global(.seek-container){
+			padding-left: 0.75rem;
+			padding-right: 0.75rem;
+		}
 	}
 
 	@media only screen and (max-width: 518px) {
