@@ -4,7 +4,7 @@
 	import { setSharedTrackData } from './SharedData.svelte';
 	import UploadContainer from './UploadContainer.svelte';
 	import type { PlaybackBackend } from './playback/Types';
-	import { createBackend, detectSourceType } from './playback/CreateBackend';
+	import { createBackend, detectSourceType, cleanUrl } from './playback/CreateBackend';
 
 	let youtubeContainer: HTMLDivElement;
 	let soundcloudContainer: HTMLDivElement;
@@ -90,7 +90,7 @@
 	}
 
 	function handleLinkSelect(url: string): void {
-		loadSource(url);
+		loadSource(cleanUrl(url));
 	}
 
 	function openUploadModal(): void {
