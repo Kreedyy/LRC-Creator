@@ -110,6 +110,8 @@
 	}
 
 	$effect(() => {
+		setSharedTrackData({ currentTime });
+		console.log('Current Time Updated:', currentTime);
 		checkIfPlaying();
 	});
 </script>

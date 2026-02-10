@@ -1,5 +1,6 @@
 import { setSharedTrackData } from './SharedData.svelte';
 
+
 export async function extractMetadataFromUrl(url: string): Promise<void> {
 	try {
 		const response = await fetch(url);
