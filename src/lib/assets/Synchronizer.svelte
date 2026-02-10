@@ -7,7 +7,7 @@
 </script>
 <div class="main-container">
   {#each lyrics, index}
-    <div class="line-container {index}"><p>Time: {lyricsTimestamps[index]} Text: {lyricsLines[index]}</p></div>
+    <div class="line-container {index}"><p>{lyricsTimestamps[index]} {lyricsLines[index]}</p></div>
   {/each}
 
   <div class="sync-container">
