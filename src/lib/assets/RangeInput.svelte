@@ -48,12 +48,12 @@
 	});
 </script>
 
-<div class="range-container {className}" bind:this={containerElement} aria-label={ariaLabel}>
+<div class="range-container {className}" bind:this={containerElement} >
 	<div class="track">
 		<div class="track-fill" style="width: {fillWidth}px;"></div>
 	</div>
 	<div class="thumb" style="left: {thumbPosition}px;"></div>
-	<input bind:this={inputElement} type="range" {min} {max} {step} {value} oninput={handleInput} />
+	<input bind:this={inputElement} type="range" {min} {max} {step} {value} oninput={handleInput} aria-label={ariaLabel}/>
 </div>
 
 <style>
