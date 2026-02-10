@@ -1,4 +1,12 @@
 <script lang="ts">
+	type Props = {
+		min?: number;
+		max?: number;
+		step?: number;
+		value?: number;
+		oninput?: (event: Event) => void;
+		class?: string;
+	};
 	let {
 		min = 0,
 		max = 100,
@@ -6,19 +14,12 @@
 		value = $bindable(0),
 		oninput,
 		class: className = ''
-	} = $props<{
-		min?: number;
-		max?: number;
-		step?: number;
-		value?: number;
-		oninput?: (event: Event) => void;
-		class?: string;
-	}>();
+	}: Props = $props();
 
 	let inputElement: HTMLInputElement;
 	let containerElement: HTMLDivElement;
-	let thumbPosition = $state(0);
-	let fillWidth = $state(0);
+	let thumbPosition = $state<number>(0);
+	let fillWidth = $state<number>(0);
 
 	function updatePositions(): void {
 		if (!containerElement || !inputElement) return;

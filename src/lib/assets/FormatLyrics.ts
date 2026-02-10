@@ -96,7 +96,7 @@ export function extractLyricsLines(lyrics: string[]): string[] {
 export function validateLyrics(lyrics: string): boolean {
 	lyrics = formatLyrics(lyrics);
 	const lines = lyrics.split('\n');
-	const timestampRegex = /^\[\d{2}:\d{2}\.\d{2}\]/; 
+	const timestampRegex = /^\[\d{2}:\d{2}\.\d{2}\]/;
 
 	return lines.every((line) => {
 		return timestampRegex.test(line); // If all lines start with [mm:ss.xx] return true, else false

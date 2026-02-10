@@ -3,7 +3,7 @@
 		$props();
 
 	let fileInput: HTMLInputElement;
-	let isDragging = $state(false);
+	let isDragging = $state<boolean>(false);
 
 	function handleFileSelect(event: Event): void {
 		const target = event.target as HTMLInputElement;

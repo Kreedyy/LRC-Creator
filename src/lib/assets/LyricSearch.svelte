@@ -2,7 +2,7 @@
 	let { result = $bindable(), showResults = $bindable() }: { result: any; showResults: boolean } =
 		$props();
 
-	let isSearching = $state(false);
+	let isSearching = $state<boolean>(false);
 
 	function reformatInput(input: string) {
 		let formattedInput: string = input.replace(/ /g, '+');

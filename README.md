@@ -23,11 +23,11 @@ Download your music and stop paying for subscription based streaming services wh
 
 ## TODO
 
-- [ ] Lyric editing  
-- [X] Functionality with [LRCLIB](https://lrclib.net/) API (GET /api/search param 'q' & POST)  
-- [X] Only POST lyrics if ~~fully plain or~~ fully synced (checking if every line starts with valid [mm:ss.xx], if synced POST both plain & synced by removing timestamps) LRCLIB POST requires synced lyrics anyways  
-- [ ] Uploading files via YouTube and SoundCloud, setSharedTrackData with the file's metadata  
-- [ ] MAYBE Add User-Agent header according to LRCLIB docs  
+- [ ] Lyric editing
+- [x] Functionality with [LRCLIB](https://lrclib.net/) API (GET /api/search param 'q' & POST)
+- [x] Only POST lyrics if ~~fully plain or~~ fully synced (checking if every line starts with valid [mm:ss.xx], if synced POST both plain & synced by removing timestamps) LRCLIB POST requires synced lyrics anyways
+- [ ] Uploading files via YouTube and SoundCloud, setSharedTrackData with the file's metadata
+- [ ] MAYBE Add User-Agent header according to LRCLIB docs
 
 ## Prerequisites
 

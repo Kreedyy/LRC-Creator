@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { formatLyrics, formatSharedData } from '$lib/assets/FormatLyrics';
 	import { setSharedTrackData } from '$lib/assets/SharedData.svelte';
+
+	type Props = {
+		userPick?: any;
+		getSyncedLyrics?: boolean;
+		lyrics: string;
+	};
 	let {
-		userPick = $bindable(),
-		getSyncedLyrics = $bindable(true),
-		lyrics = $bindable()
-	}: { userPick?: any; getSyncedLyrics?: boolean; lyrics: string } = $props<{}>();
+		userPick = $bindable<any>(),
+		getSyncedLyrics = $bindable<boolean>(true),
+		lyrics = $bindable<string>()
+	}: Props = $props();
 
 	function setPlainOrSyncedLyrics(syncedLyrics: boolean) {
 		if (userPick.syncedLyrics) {

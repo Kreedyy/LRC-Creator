@@ -1,5 +1,3 @@
-
-
 export let shared = $state<{
 	artist: string;
 	track: string;

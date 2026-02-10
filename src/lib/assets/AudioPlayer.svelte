@@ -5,17 +5,17 @@
 	import UploadContainer from './UploadContainer.svelte';
 
 	let audioElement: HTMLAudioElement;
-	let isPlaying: boolean = $state(false);
-	let currentTime: number = $state(0);
-	let duration: number = $state(0);
-	let speed: number = $state(1);
-	let volume: number = $state(0.25);
-	let previousVolume: number = $state(0.5);
-	let isMuted: boolean = $state(false);
-	let animationFrameId: number;
+	let isPlaying = $state<boolean>(false);
+	let currentTime = $state<number>(0);
+	let duration = $state<number>(0);
+	let speed = $state<number>(1);
+	let volume = $state<number>(0.25);
+	let previousVolume = $state<number>(0.5);
+	let isMuted = $state<boolean>(false);
+	let animationFrameId = $state<number>(0);
 	let selectedFile: File | null = null;
-	let audioUrl: string | null = $state(null);
-	let showUploadModal = $state(false);
+	let audioUrl = $state<string | null>(null);
+	let showUploadModal = $state<boolean>(false);
 
 	function handleFileSelect(file: File): void {
 		if (file.type.startsWith('audio/')) {
@@ -111,7 +111,6 @@
 
 	$effect(() => {
 		setSharedTrackData({ currentTime });
-		console.log('Current Time Updated:', currentTime);
 		checkIfPlaying();
 	});
 </script>
@@ -290,7 +289,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
-		font-size: .9375rem;
+		font-size: 0.9375rem;
 		font-variant-numeric: tabular-nums;
 	}
 
@@ -358,7 +357,7 @@
 			margin-top: 0.5rem;
 			margin-bottom: 0.5rem;
 		}
-		:global(.seek-container){
+		:global(.seek-container) {
 			padding-left: 0.75rem;
 			padding-right: 0.75rem;
 		}

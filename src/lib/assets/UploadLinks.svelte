@@ -1,8 +1,8 @@
 <script lang="ts">
 	let { onclose }: { onclose: () => void } = $props();
 
-	let linkUrl = $state('');
-	let isLoading = $state(false);
+	let linkUrl = $state<string>('');
+	let isLoading = $state<boolean>(false);
 
 	async function validateLink(url: string): Promise<boolean> {
 		// TODO: Implement actual validation
