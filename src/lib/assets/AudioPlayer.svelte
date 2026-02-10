@@ -321,7 +321,7 @@
 	}
 
 	.speed-btn {
-		font-size: 0.75rem;
+		font-size: .9375rem;
 		padding: 0.25rem 0.5rem;
 		background: var(--neutral-450);
 		border: 1px solid var(--neutral-400);
@@ -389,7 +389,7 @@
 			height: 18px;
 		}
 
-		.time-display {
+		.time-display, .speed-btn {
 			font-size: 0.75rem;
 		}
 
