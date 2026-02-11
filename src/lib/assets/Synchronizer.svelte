@@ -6,6 +6,8 @@
 	let lyricsLines = $derived<string[]>(extractLyricsLines(lyrics));
 	let currentTime = $derived<number>(getSharedCurrentTime());
 	let index = $state<number>(0);
+	
+	let selectedIndex = $state<number>(0);
 
 	function formatTime(seconds: number): string {
 		const mins = Math.floor(seconds / 60);
@@ -17,12 +19,21 @@
 	function updateTimestamp(index: number) {
 		lyricsTimestamps[index] = formatTime(currentTime);
 	}
+
+	function setSelectedIndex(index:number){
+		selectedIndex = index;
+	}
 </script>
 
-<p>{formatTime(currentTime)}</p>
 <div class="main-container">
 	{#each lyrics, index}
-		<div class="line-container {index}"><p>{lyricsTimestamps[index]} {lyricsLines[index]}</p></div>
+		<div class="line-container {index}" onclick={(() => setSelectedIndex(index))}>
+			{#if index == selectedIndex}
+				<p>{formatTime(currentTime)} ></p>
+			{/if}
+			<p>{lyricsTimestamps[index]} {lyricsLines[index]}
+
+			</p></div>
 	{/each}
 
 	<div class="sync-container">
@@ -32,7 +43,10 @@
 
 <style>
 	/*If index class is even, style it differently */
-
+	.line-container{
+		display: grid;
+		grid-template-columns: auto 1fr;
+	}
 	.main-container {
 		position: relative;
 		height: 100%;
