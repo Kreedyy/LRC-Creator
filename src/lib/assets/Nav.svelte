@@ -16,9 +16,9 @@
 				return 'settings';
 			case '/sync':
 				return 'sync';
-			case "/":
-				return 'start';
-				default:
+			case '/help':
+				return 'help';
+			default:
 				return '';
 		}
 	}
@@ -54,10 +54,10 @@
 		</svg>
 	</a>
 	<a
-		href="/"
+		href="/help"
 		title="Getting Started"
-		onclick={() => setActive('start')}
-		class:selected={activeIcon == 'start'}
+		onclick={() => setActive('help')}
+		class:selected={activeIcon == 'help'}
 	>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
 			><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path
