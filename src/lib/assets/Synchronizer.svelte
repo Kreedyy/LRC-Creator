@@ -62,6 +62,7 @@
 		position: relative;
 		height: 100%;
 		width: 100%;
+		padding-bottom: 5rem;
 	}
 	.sync-container {
 		position: absolute;
