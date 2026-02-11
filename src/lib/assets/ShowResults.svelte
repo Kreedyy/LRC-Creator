@@ -83,8 +83,8 @@
 <style>
 	.results-container {
 		position: absolute;
-		top: 250px;
-		height: calc(100% - 316px);
+		top: 167px;
+		height: calc(100% - 356px);
 		width: 90%;
 		max-width: fit-content;
 		display: flex;
