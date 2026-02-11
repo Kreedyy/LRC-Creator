@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="sync-container">
-		<button onclick={() => updateTimestamp(index)} class="sync-btn">Sync</button>
+		<button onclick={() => updateTimestamp(selectedIndex)} class="sync-btn">Sync</button>
 	</div>
 </div>
 
@@ -53,6 +53,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
+		margin-bottom: 5rem;
+		height: 100%;
+		flex: 1;
+		overflow-y: auto;
 	}
 	.line-container {
 		display: grid;
@@ -60,9 +64,8 @@
 	}
 	.main-container {
 		position: relative;
-		height: 100%;
 		width: 100%;
-		padding-bottom: 5rem;
+		height: 100%;
 	}
 	.sync-container {
 		position: absolute;
