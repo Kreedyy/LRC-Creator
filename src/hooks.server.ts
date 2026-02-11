@@ -10,7 +10,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://w.soundcloud.com https://static.cloudflareinsights.com",
 			"style-src 'self' 'unsafe-inline'",
 			"img-src 'self' data: https://i.ytimg.com",
-			"frame-src https://www.youtube.com https://w.soundcloud.com",
+			'frame-src https://www.youtube.com https://w.soundcloud.com',
 			"connect-src 'self' https://lrclib.net",
 			"font-src 'self'",
 			"media-src 'self' blob:",
@@ -18,14 +18,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 			"base-uri 'self'",
 			"form-action 'self'",
 			"frame-ancestors 'none'",
-			"trusted-types default"
+			'trusted-types default'
 		].join('; ')
 	);
 
-	response.headers.set(
-		'Strict-Transport-Security',
-		'max-age=31536000; includeSubDomains; preload'
-	);
+	response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
 
 	response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
 

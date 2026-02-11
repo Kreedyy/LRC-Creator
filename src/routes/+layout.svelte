@@ -10,7 +10,10 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 	<title>LRC Multitool</title>
-	<meta name="description" content="An easy to use web-based tool for managing, editing and sharing LRC files, with integrated audio playback and synchronization features." />
+	<meta
+		name="description"
+		content="An easy to use web-based tool for managing, editing and sharing LRC files, with integrated audio playback and synchronization features."
+	/>
 </svelte:head>
 
 <div>

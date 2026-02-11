@@ -191,36 +191,38 @@
 		<div bind:this={soundcloudContainer}></div>
 	</div>
 
-	<div class="controls">
-		<button class="icon-btn upload" title="Upload Audio" onclick={openUploadModal}>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-				<path
-					d="M352 173.3L352 384C352 401.7 337.7 416 320 416C302.3 416 288 401.7 288 384L288 173.3L246.6 214.7C234.1 227.2 213.8 227.2 201.3 214.7C188.8 202.2 188.8 181.9 201.3 169.4L297.3 73.4C309.8 60.9 330.1 60.9 342.6 73.4L438.6 169.4C451.1 181.9 451.1 202.2 438.6 214.7C426.1 227.2 405.8 227.2 393.3 214.7L352 173.3zM320 464C364.2 464 400 428.2 400 384L480 384C515.3 384 544 412.7 544 448L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 448C96 412.7 124.7 384 160 384L240 384C240 428.2 275.8 464 320 464zM464 488C477.3 488 488 477.3 488 464C488 450.7 477.3 440 464 440C450.7 440 440 450.7 440 464C440 477.3 450.7 488 464 488z"
-				/>
-			</svg>
-		</button>
-
-		<button class="icon-btn play" title="Play button" onclick={togglePlay}>
-			{#if isPlaying}
+	<div class="upload-playback-container">
+		<div class="controls">
+			<button class="icon-btn upload" title="Upload Audio" onclick={openUploadModal}>
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
 					<path
-						d="M176 96C149.5 96 128 117.5 128 144L128 496C128 522.5 149.5 544 176 544L240 544C266.5 544 288 522.5 288 496L288 144C288 117.5 266.5 96 240 96L176 96zM400 96C373.5 96 352 117.5 352 144L352 496C352 522.5 373.5 544 400 544L464 544C490.5 544 512 522.5 512 496L512 144C512 117.5 490.5 96 464 96L400 96z"
+						d="M352 173.3L352 384C352 401.7 337.7 416 320 416C302.3 416 288 401.7 288 384L288 173.3L246.6 214.7C234.1 227.2 213.8 227.2 201.3 214.7C188.8 202.2 188.8 181.9 201.3 169.4L297.3 73.4C309.8 60.9 330.1 60.9 342.6 73.4L438.6 169.4C451.1 181.9 451.1 202.2 438.6 214.7C426.1 227.2 405.8 227.2 393.3 214.7L352 173.3zM320 464C364.2 464 400 428.2 400 384L480 384C515.3 384 544 412.7 544 448L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 448C96 412.7 124.7 384 160 384L240 384C240 428.2 275.8 464 320 464zM464 488C477.3 488 488 477.3 488 464C488 450.7 477.3 440 464 440C450.7 440 440 450.7 440 464C440 477.3 450.7 488 464 488z"
 					/>
 				</svg>
-			{:else}
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-					<path
-						d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"
-					/>
-				</svg>
-			{/if}
-		</button>
-	</div>
+			</button>
 
-	<div class="time-display">
-		<span class="current">{formatTime(currentTime)}</span>
-		<span class="separator">/</span>
-		<span class="total">{formatTime(duration)}</span>
+			<button class="icon-btn play" title="Play button" onclick={togglePlay}>
+				{#if isPlaying}
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+						<path
+							d="M176 96C149.5 96 128 117.5 128 144L128 496C128 522.5 149.5 544 176 544L240 544C266.5 544 288 522.5 288 496L288 144C288 117.5 266.5 96 240 96L176 96zM400 96C373.5 96 352 117.5 352 144L352 496C352 522.5 373.5 544 400 544L464 544C490.5 544 512 522.5 512 496L512 144C512 117.5 490.5 96 464 96L400 96z"
+						/>
+					</svg>
+				{:else}
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+						<path
+							d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"
+						/>
+					</svg>
+				{/if}
+			</button>
+		</div>
+
+		<div class="time-display">
+			<span class="current">{formatTime(currentTime)}</span>
+			<span class="separator">/</span>
+			<span class="total">{formatTime(duration)}</span>
+		</div>
 	</div>
 
 	<div class="seek-container">
@@ -282,6 +284,10 @@
 </div>
 
 <style>
+	.upload-playback-container {
+		display: flex;
+		gap: 1rem;
+	}
 	.player {
 		position: relative;
 		display: flex;
@@ -304,7 +310,7 @@
 	.controls {
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
+		gap: 2rem;
 	}
 
 	.icon-btn {
