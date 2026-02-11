@@ -5,7 +5,6 @@
 	let lyricsTimestamps = $derived<string[]>(extractTimestamps(lyrics));
 	let lyricsLines = $derived<string[]>(extractLyricsLines(lyrics));
 	let currentTime = $derived<number>(getSharedCurrentTime());
-	let index = $state<number>(0);
 
 	let selectedIndex = $state<number>(0);
 
