@@ -6,7 +6,7 @@
 	let lyricsLines = $derived<string[]>(extractLyricsLines(lyrics));
 	let currentTime = $derived<number>(getSharedCurrentTime());
 	let index = $state<number>(0);
-	
+
 	let selectedIndex = $state<number>(0);
 
 	function formatTime(seconds: number): string {
@@ -20,21 +20,24 @@
 		lyricsTimestamps[index] = formatTime(currentTime);
 	}
 
-	function setSelectedIndex(index:number){
+	function setSelectedIndex(index: number) {
 		selectedIndex = index;
 	}
 </script>
 
 <div class="main-container">
-	{#each lyrics, index}
-		<div class="line-container {index}" onclick={(() => setSelectedIndex(index))}>
-			{#if index == selectedIndex}
-				<p>{formatTime(currentTime)} ></p>
-			{/if}
-			<p>{lyricsTimestamps[index]} {lyricsLines[index]}
-
-			</p></div>
-	{/each}
+	<div class="gap">
+		{#each lyrics, index}
+			<div class="line-container {index}" onclick={() => setSelectedIndex(index)}>
+				<div class="current-time-container">
+					{#if index == selectedIndex}
+						<p class="timestamp">{formatTime(currentTime)} ></p>
+					{/if}
+				</div>
+				<p>{lyricsTimestamps[index]} {lyricsLines[index]}</p>
+			</div>
+		{/each}
+	</div>
 
 	<div class="sync-container">
 		<button onclick={() => updateTimestamp(index)} class="sync-btn">Sync</button>
@@ -43,7 +46,15 @@
 
 <style>
 	/*If index class is even, style it differently */
-	.line-container{
+	.current-time-container{
+		width: 125px;
+	}
+	.gap {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+	.line-container {
 		display: grid;
 		grid-template-columns: auto 1fr;
 	}
