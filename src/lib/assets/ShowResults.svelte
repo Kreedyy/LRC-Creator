@@ -83,7 +83,7 @@
 <style>
 	.results-container {
 		position: absolute;
-		top: 167px;
+		top: 170px;
 		height: calc(100% - 316px);
 		width: 90%;
 		max-width: fit-content;
