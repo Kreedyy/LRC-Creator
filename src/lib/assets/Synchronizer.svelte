@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { extractLyricsLines, extractTimestamps } from './FormatLyrics';
+	import { extractLyricsLines, extractTimestamps, formatLyrics } from './FormatLyrics';
 	import { getSharedCurrentTime, getSharedLyrics, setSharedTrackData } from './SharedData.svelte';
-	let lyrics = $derived<string[]>(getSharedLyrics().split('\n'));
+	let lyrics = $derived<string[]>(formatLyrics(getSharedLyrics()).split('\n'));
 	let lyricsTimestamps = $derived<string[]>(extractTimestamps(lyrics));
 	let lyricsLines = $derived<string[]>(extractLyricsLines(lyrics));
 	let currentTime = $derived<number>(getSharedCurrentTime());
@@ -112,5 +112,10 @@
 		min-width: fit-content;
 		width: calc(100% - 10rem);
 		max-width: 400px;
+	}
+	.sync-btn:focus,
+	.sync-btn:hover,
+	.sync-btn:active{
+		color:var(--neutral-100);
 	}
 </style>
