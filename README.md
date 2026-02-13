@@ -1,6 +1,6 @@
 # LRC Multitool
 
-Web-based tool for creating, editing and syncing lyrics with integrated audio playback and controls. Search by artist/track/lyrics to import lyrics directly from [LRCLIB](https://lrclib.net/). Optionally submit synced lyrics to [LRCLIB](https://lrclib.net/) via their API.
+Web-based tool for creating, editing and syncing lyrics with integrated audio playback and controls. Search by artist/track/lyrics to import lyrics directly from [LRCLIB](https://lrclib.net/), optionally submit synced lyrics via their API.
 
 ## Features
 
