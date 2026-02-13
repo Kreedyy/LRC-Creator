@@ -77,6 +77,10 @@
 	.line-container.active p {
 		color: var(--neutral-450);
 	}
+	button:focus, button:hover, button:active{
+		background-color: var(--neutral-450);
+		cursor: var(--neutral-100);
+	}
 	.main-container {
 		position: relative;
 		width: 100%;
@@ -102,4 +106,5 @@
 		width: calc(100% - 10rem);
 		max-width: 400px;
 	}
+	
 </style>
