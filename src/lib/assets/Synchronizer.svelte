@@ -23,6 +23,10 @@
 		.join('\n');
 	
 	setSharedTrackData({ lyrics: combinedLyrics });
+
+	if (selectedIndex < lyricsLines.length - 1) {
+		setSelectedIndex(selectedIndex + 1);
+	}
 }
 
 	function setSelectedIndex(index: number) {
