@@ -377,16 +377,8 @@
 		font-variant-numeric: tabular-nums;
 	}
 
-	.current {
+	.current, .separator, .total {
 		color: var(--neutral-100);
-	}
-
-	.separator {
-		color: var(--neutral-200);
-	}
-
-	.total {
-		color: var(--neutral-200);
 	}
 
 	.seek-container {
