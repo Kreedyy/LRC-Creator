@@ -8,6 +8,9 @@ Web-based tool for creating, editing and syncing lyrics with integrated audio pl
 - Functionality with [LRCLIB](https://lrclib.net/)'s API (Searching & Submitting Lyrics)
 - Upload audio via local files, direct link, YouTube link or SoundCloud link to use while syncing
 
+## TODO
+- [ ] Implement api/get and api/get-cached in case ppl rather use dat instead of search
+
 ## Prerequisites
 
 - [Bun](https://bun.com/get)
