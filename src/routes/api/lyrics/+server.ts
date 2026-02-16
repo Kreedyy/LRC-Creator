@@ -1,20 +1,26 @@
-// Server endpoint that acts as a proxy for LRCLIB publish requests
-// The client solves the challenge, then sends the token to this endpoint
-// This endpoint forwards the request to LRCLIB with the proper headers
-
 import { convertSyncedToPlainLyrics, validatePayload } from '$lib/assets/FormatLyrics.js';
 import { json, type RequestHandler, error } from '@sveltejs/kit';
 
 export async function GET({ url, fetch }) {
-	const q = url.searchParams.get('q'); // 'q' searches track, artist and album from given input
+	const q = url.searchParams.get('q');
 
-	const response = await fetch(`https://lrclib.net/api/search?q=${q}`);
+	if (!q) {
+		throw error(400, 'Missing search query');
+	}
+
+	if (q.length > 50) {
+		throw error(400, 'Search query too long (max 50 characters)');
+	}
+
+	const apiUrl = new URL('https://lrclib.net/api/search');
+	apiUrl.searchParams.set('q', q);
+
+	const response = await fetch(apiUrl);
 	const data = await response.json();
 
 	return json(data);
 }
 
-// Proxy endpoint for challenge requests (avoids CORS)
 export async function PUT({ fetch }) {
 	try {
 		const challengeResponse = await fetch('https://lrclib.net/api/request-challenge', {
@@ -35,7 +41,6 @@ export async function PUT({ fetch }) {
 	}
 }
 
-// Proxy endpoint for publishing with client-solved challenge
 export const POST: RequestHandler = async ({ request, fetch }) => {
 	try {
 		const body = await request.json();
@@ -68,7 +73,6 @@ export const POST: RequestHandler = async ({ request, fetch }) => {
 			body: JSON.stringify(payload)
 		});
 
-		// 201 Created = success (empty body per LRCLIB docs)
 		if (publishResponse.status === 201) {
 			return json({ success: true });
 		}
@@ -81,7 +85,6 @@ export const POST: RequestHandler = async ({ request, fetch }) => {
 				const errorData = JSON.parse(responseText);
 				errorMessage = errorData.message || errorData.name || errorMessage;
 			} catch {
-				// In case JSON parse fails somehow
 				errorMessage = responseText;
 			}
 		}

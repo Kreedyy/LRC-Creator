@@ -377,7 +377,9 @@
 		font-variant-numeric: tabular-nums;
 	}
 
-	.current, .separator, .total {
+	.current,
+	.separator,
+	.total {
 		color: var(--neutral-100);
 	}
 

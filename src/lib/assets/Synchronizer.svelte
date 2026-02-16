@@ -115,7 +115,7 @@
 	}
 	.sync-btn:focus,
 	.sync-btn:hover,
-	.sync-btn:active{
-		color:var(--neutral-100);
+	.sync-btn:active {
+		color: var(--neutral-100);
 	}
 </style>

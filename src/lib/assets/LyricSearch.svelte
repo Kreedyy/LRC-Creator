@@ -4,13 +4,16 @@
 
 	let isSearching = $state<boolean>(false);
 
+	let maxChars: number = 50;
+
 	function reformatInput(input: string) {
 		let formattedInput: string = input.replace(/ /g, '+');
 		return formattedInput;
 	}
 
 	async function search(input: string) {
-		if (input.trim() == '') return;
+		input = input.trim().slice(0, maxChars);
+		if (input == '') return;
 
 		isSearching = true;
 		const response = await fetch(`/api/lyrics?q=${reformatInput(input)}`);
@@ -35,6 +38,7 @@
 			id="searchInput"
 			type="text"
 			placeholder="Track, artist, or album..."
+			maxlength={maxChars}
 			bind:value={userSearch}
 			onkeydown={(e) => e.key === 'Enter' && search(userSearch)}
 			onclick={setShowResults}
