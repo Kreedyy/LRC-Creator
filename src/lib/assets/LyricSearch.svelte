@@ -6,17 +6,12 @@
 
 	let maxChars: number = 50;
 
-	function reformatInput(input: string) {
-		let formattedInput: string = input.replace(/ /g, '+');
-		return formattedInput;
-	}
-
 	async function search(input: string) {
 		input = input.trim().slice(0, maxChars);
 		if (input == '') return;
 
 		isSearching = true;
-		const response = await fetch(`/api/search?q=${reformatInput(input)}`);
+		const response = await fetch(`/api/search?q=${input}`);
 		result = await response.json();
 		isSearching = false;
 		setShowResults();
