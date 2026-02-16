@@ -1,46 +1,6 @@
 import { convertSyncedToPlainLyrics, validatePayload } from '$lib/assets/FormatLyrics.js';
 import { json, type RequestHandler, error } from '@sveltejs/kit';
 
-export async function GET({ url, fetch }) {
-	const q = url.searchParams.get('q');
-
-	if (!q) {
-		throw error(400, 'Missing search query');
-	}
-
-	if (q.length > 50) {
-		throw error(400, 'Search query too long (max 50 characters)');
-	}
-
-	const apiUrl = new URL('https://lrclib.net/api/search');
-	apiUrl.searchParams.set('q', q);
-
-	const response = await fetch(apiUrl);
-	const data = await response.json();
-
-	return json(data);
-}
-
-export async function PUT({ fetch }) {
-	try {
-		const challengeResponse = await fetch('https://lrclib.net/api/request-challenge', {
-			method: 'POST'
-		});
-
-		if (!challengeResponse.ok) {
-			throw error(challengeResponse.status, 'Failed to get challenge');
-		}
-
-		const challengeData = await challengeResponse.json();
-		return json(challengeData);
-	} catch (err) {
-		if (err && typeof err === 'object' && 'status' in err) {
-			throw err;
-		}
-		throw error(500, 'Server error: ' + (err as Error).message);
-	}
-}
-
 export const POST: RequestHandler = async ({ request, fetch }) => {
 	try {
 		const body = await request.json();

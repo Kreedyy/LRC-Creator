@@ -16,7 +16,7 @@
 		if (input == '') return;
 
 		isSearching = true;
-		const response = await fetch(`/api/lyrics?q=${reformatInput(input)}`);
+		const response = await fetch(`/api/search?q=${reformatInput(input)}`);
 		result = await response.json();
 		isSearching = false;
 		setShowResults();

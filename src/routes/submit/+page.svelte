@@ -68,8 +68,8 @@
 			progress = 'Requesting challenge...';
 
 			// Request challenge via server
-			const challengeResponse = await fetch('/api/lyrics', {
-				method: 'PUT'
+			const challengeResponse = await fetch('/api/request-challenge', {
+				method: 'POST'
 			});
 
 			if (!challengeResponse.ok) {
@@ -101,7 +101,7 @@
 			// Publish via server proxy
 			progress = 'Publishing lyrics...';
 
-			const publishResponse = await fetch('/api/lyrics', {
+			const publishResponse = await fetch('/api/post', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
