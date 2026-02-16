@@ -5,6 +5,7 @@ export let shared = $state<{
 	duration: number;
 	lyrics: string;
 	currentTime: number;
+	searchResultData?: any;
 }>({
 	artist: '',
 	track: '',
@@ -40,7 +41,15 @@ export function setSharedTrackData({
 
 // In case you rather use object for these
 export function getSharedTrackData(
-	...fields: ('artist' | 'track' | 'album' | 'duration' | 'lyrics' | 'currentTime')[]
+	...fields: (
+		| 'artist'
+		| 'track'
+		| 'album'
+		| 'duration'
+		| 'lyrics'
+		| 'currentTime'
+		| 'searchResultData'
+	)[]
 ) {
 	if (fields.length === 0) {
 		return {
@@ -49,7 +58,8 @@ export function getSharedTrackData(
 			album: shared.album,
 			duration: shared.duration,
 			lyrics: shared.lyrics,
-			currentTime: shared.currentTime
+			currentTime: shared.currentTime,
+			searchResultData: shared.searchResultData
 		};
 	}
 
@@ -58,6 +68,10 @@ export function getSharedTrackData(
 		result[field] = shared[field];
 	});
 	return result;
+}
+
+export function getSharedSearchResults(): any {
+	return shared.searchResultData;
 }
 
 export function getSharedArtist(): string {

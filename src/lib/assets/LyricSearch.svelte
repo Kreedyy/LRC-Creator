@@ -1,6 +1,7 @@
 <script lang="ts">
-	let { result = $bindable(), showResults = $bindable() }: { result: any; showResults: boolean } =
-		$props();
+	import { getSharedSearchResults, shared } from './SharedData.svelte';
+
+	let { showResults = $bindable() }: { result: any; showResults: boolean } = $props();
 
 	let isSearching = $state<boolean>(false);
 
@@ -12,13 +13,13 @@
 
 		isSearching = true;
 		const response = await fetch(`/api/search?q=${input}`);
-		result = await response.json();
+		shared.searchResultData = await response.json();
 		isSearching = false;
 		setShowResults();
 	}
 
 	function setShowResults() {
-		if (result && result.length > 0) {
+		if (getSharedSearchResults() && getSharedSearchResults().length > 0) {
 			showResults = true;
 		}
 	}
@@ -38,8 +39,7 @@
 			onkeydown={(e) => e.key === 'Enter' && search(userSearch)}
 			onclick={setShowResults}
 		/>
-		<button title="Search"
-onclick={() => search(userSearch)} disabled={isSearching}>
+		<button title="Search" onclick={() => search(userSearch)} disabled={isSearching}>
 			{#if isSearching}
 				<span class="spinner"></span>
 			{:else}

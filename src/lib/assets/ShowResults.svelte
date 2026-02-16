@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { formatLyrics } from '$lib/assets/FormatLyrics';
-	import { setSharedTrackData } from './SharedData.svelte';
+	import { getSharedSearchResults, setSharedTrackData } from './SharedData.svelte';
+
+	let result = $derived<any>(getSharedSearchResults());
 
 	type Props = {
-		result: any;
 		userPick: any;
 		getSyncedLyrics: boolean;
 		showResults: boolean;
 	};
 	let {
-		result = $bindable(),
 		userPick = $bindable(),
 		getSyncedLyrics = $bindable(),
 		showResults = $bindable()
