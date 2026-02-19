@@ -90,15 +90,14 @@
 		background-color: var(--brand-500);
 		color: var(--neutral-450);
 	}
-		.line-container.active p,
+	.line-container.active p,
 	button:focus p,
 	button:hover p,
 	button:active p {
 		color: var(--neutral-450);
 	}
 	.main-container {
-		position: relative;
-
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;

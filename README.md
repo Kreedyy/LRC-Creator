@@ -9,6 +9,7 @@ Web-based tool for creating, editing and syncing lyrics with integrated audio pl
 - Upload audio via local files, direct link, YouTube link or SoundCloud link to use while syncing
 
 ## TODO
+
 - [ ] Implement api/get and api/get-cached in case ppl rather use dat instead of search
 
 ## Prerequisites
