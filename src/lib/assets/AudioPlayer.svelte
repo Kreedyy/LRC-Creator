@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { extractMetadataFromFile } from './ExtractAudio';
 	import RangeInput from './RangeInput.svelte';
-	import { setSharedTrackData } from './SharedData.svelte';
+	import { shared, setSharedTrackData } from './SharedData.svelte';
 	import UploadContainer from './UploadContainer.svelte';
 	import type { PlaybackBackend } from './playback/Types';
 	import { createBackend, detectSourceType, cleanUrl } from './playback/CreateBackend';
@@ -163,6 +163,16 @@
 
 	$effect(() => {
 		setSharedTrackData({ currentTime });
+	});
+
+	$effect(() => {
+		if (shared.seekRequest !== null && backend) {
+			const { time, play } = shared.seekRequest;
+			shared.seekRequest = null;
+			backend.seekTo(time);
+			currentTime = time;
+			if (play) backend.play();
+		}
 	});
 
 	$effect(() => {

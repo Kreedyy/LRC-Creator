@@ -5,6 +5,7 @@ export let shared = $state<{
 	duration: number;
 	lyrics: string;
 	currentTime: number;
+	seekRequest: { play: boolean; time: number } | null;
 	searchResultData?: any;
 }>({
 	artist: '',
@@ -12,7 +13,8 @@ export let shared = $state<{
 	album: '',
 	duration: 0,
 	lyrics: '',
-	currentTime: 0
+	currentTime: 0,
+	seekRequest: null
 });
 
 // Usage: setSharedTrackData({ artist: "Artist Name", track: "Track Name" });
@@ -91,4 +93,8 @@ export function getSharedLyrics(): string {
 }
 export function getSharedCurrentTime(): number {
 	return shared.currentTime;
+}
+
+export function requestSeek(time: number, play: boolean = false): void {
+	shared.seekRequest = { time, play };
 }

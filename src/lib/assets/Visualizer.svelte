@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { extractLyricsLines, extractTimestamps, formatLyrics } from './FormatLyrics';
-	import { getSharedCurrentTime, getSharedLyrics, setSharedTrackData } from './SharedData.svelte';
+	import { getSharedCurrentTime, getSharedLyrics, requestSeek } from './SharedData.svelte';
+
 	let lyrics = $derived<string[]>(formatLyrics(getSharedLyrics()).split('\n'));
 	let lyricsTimestamps = $derived<string[]>(extractTimestamps(lyrics));
 	let lyricsLines = $derived<string[]>(extractLyricsLines(lyrics));
@@ -15,27 +16,29 @@
 		return `[${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')}]`;
 	}
 
-	function updateTimestamp(index: number) {
-		const newTimestamp = formatTime(currentTime);
-
-		const updatedLines = lyricsLines.map((line, i) => {
-			if (i === index) {
-				return `${newTimestamp} ${line}`;
-			}
-
-			const existing = lyricsTimestamps[i];
-			return existing ? `${existing} ${line}` : line;
-		});
-
-		setSharedTrackData({ lyrics: updatedLines.join('\n') });
-
-		if (selectedIndex < lyricsLines.length - 1) {
-			setSelectedIndex(selectedIndex + 1);
-		}
+	function parseTimestamp(ts: string): number {
+		const match = ts.match(/^\[(\d{2}):(\d{2})\.(\d{2})\]/);
+		if (!match) return -1;
+		return parseInt(match[1]) * 60 + parseInt(match[2]) + parseInt(match[3]) / 100;
 	}
 
-	function setSelectedIndex(index: number) {
-		selectedIndex = index;
+	function setActiveLyrics() {
+		let newIndex = 0;
+		for (let i = 0; i < lyricsTimestamps.length; i++) {
+			const t = parseTimestamp(lyricsTimestamps[i]);
+			if (t !== -1 && currentTime >= t) newIndex = i;
+		}
+		selectedIndex = newIndex;
+	}
+
+	$effect(() => {
+		void currentTime;
+		setActiveLyrics();
+	});
+
+	function skipToLyrics(index: number) {
+		const t = parseTimestamp(lyricsTimestamps[index]);
+		if (t !== -1) requestSeek(t, true);
 	}
 </script>
 
@@ -44,7 +47,7 @@
 		{#each lyrics, index}
 			<button
 				class="line-container {index === selectedIndex ? 'active' : ''} {index}"
-				onclick={() => setSelectedIndex(index)}
+				onclick={() => skipToLyrics(index)}
 			>
 				<div class="current-time-container">
 					{#if index == selectedIndex}
@@ -54,9 +57,6 @@
 				<p>{lyricsTimestamps[index]} {lyricsLines[index]}</p>
 			</button>
 		{/each}
-		<div class="sync-container">
-			<button onclick={() => updateTimestamp(selectedIndex)} class="sync-btn">Sync</button>
-		</div>
 	</div>
 </div>
 
@@ -69,6 +69,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
+		padding-bottom: 2rem;
 	}
 	.line-container {
 		display: grid;
@@ -84,15 +85,13 @@
 	}
 
 	button:focus,
-	button:hover,
-	button:active {
+	button:hover {
 		background-color: var(--brand-500);
 		color: var(--neutral-450);
 	}
 	.line-container.active p,
 	button:focus p,
-	button:hover p,
-	button:active p {
+	button:hover p {
 		color: var(--neutral-450);
 	}
 	.main-container {
