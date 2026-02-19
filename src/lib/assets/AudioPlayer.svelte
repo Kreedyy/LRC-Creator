@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { extractMetadataFromFile } from './ExtractAudio';
 	import RangeInput from './RangeInput.svelte';
 	import { shared, setSharedTrackData } from './SharedData.svelte';
 	import UploadContainer from './UploadContainer.svelte';
@@ -85,7 +84,6 @@
 				URL.revokeObjectURL(blobUrl);
 			}
 			blobUrl = URL.createObjectURL(file);
-			extractMetadataFromFile(file);
 			loadSource(blobUrl, true);
 		}
 	}
