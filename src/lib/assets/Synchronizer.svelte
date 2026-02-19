@@ -75,27 +75,36 @@
 		display: grid;
 		grid-template-columns: auto 1fr;
 		text-align: left;
+		max-width: 1000px;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		min-width: 500px;
 	}
 	.line-container.active {
 		background-color: var(--brand-500);
 	}
-	.line-container.active p {
-		color: var(--neutral-450);
-	}
+
 	button:focus,
 	button:hover,
 	button:active {
-		background-color: var(--neutral-450);
-		cursor: var(--neutral-100);
+		background-color: var(--brand-500);
+		color: var(--neutral-450);
+	}
+		.line-container.active p,
+	button:focus p,
+	button:hover p,
+	button:active p {
+		color: var(--neutral-450);
 	}
 	.main-container {
 		position: relative;
-		width: 100%;
-		height: 100%;
 
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
+		align-items: center;
+		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 	.sync-container {
 		position: sticky;
@@ -112,10 +121,5 @@
 		min-width: fit-content;
 		width: calc(100% - 10rem);
 		max-width: 400px;
-	}
-	.sync-btn:focus,
-	.sync-btn:hover,
-	.sync-btn:active {
-		color: var(--neutral-100);
 	}
 </style>
