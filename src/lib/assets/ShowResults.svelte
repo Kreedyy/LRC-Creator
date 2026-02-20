@@ -121,6 +121,7 @@
 		border-radius: var(--radius-md);
 		border-left: 3px solid var(--brand-500);
 		transition: all var(--transition);
+		min-width: fit-content;
 	}
 
 	.result-card:hover {
