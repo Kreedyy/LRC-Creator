@@ -78,24 +78,28 @@
 		max-width: 1000px;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
-		min-width: 500px;
+	
+	}
+	button:active{
+		background-color: var(--neutral-450);
 	}
 	.line-container.active {
 		background-color: var(--brand-500);
 	}
 
-	button:focus,
+	/*button:focus,
 	button:hover {
 		background-color: var(--brand-500);
 		color: var(--neutral-450);
-	}
-	.line-container.active p,
-	button:focus p,
-	button:hover p {
+	}*/
+	.line-container.active p
+	/*button:focus p,
+	button:hover p*/ {
 		color: var(--neutral-450);
 	}
 	.main-container {
 		height: 100%;
+	
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
