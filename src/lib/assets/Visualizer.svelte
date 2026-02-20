@@ -80,6 +80,9 @@
 		padding-bottom: 1rem;
 	
 	}
+	button:active{
+		background-color: var(--neutral-450);
+	}
 	.line-container.active {
 		background-color: var(--brand-500);
 	}
