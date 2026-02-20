@@ -84,14 +84,14 @@
 		background-color: var(--brand-500);
 	}
 
-	button:focus,
+	/*button:focus,
 	button:hover {
 		background-color: var(--brand-500);
 		color: var(--neutral-450);
-	}
-	.line-container.active p,
-	button:focus p,
-	button:hover p {
+	}*/
+	.line-container.active p
+	/*button:focus p,
+	button:hover p*/ {
 		color: var(--neutral-450);
 	}
 	.main-container {
