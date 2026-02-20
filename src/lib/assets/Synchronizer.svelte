@@ -69,6 +69,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
+		min-height: 100%;
+		height: fit-content;
 	}
 	.line-container {
 		display: grid;
