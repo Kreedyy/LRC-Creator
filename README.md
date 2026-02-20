@@ -10,6 +10,8 @@ Web-based tool for creating, editing and syncing lyrics with integrated audio pl
 
 ## TODO
 
+- [ ] Center active lyrics in visualizer 
+- [ ] Remove the button:active bg color change for visualizer and synchronizer
 - [ ] Implement api/get and api/get-cached in case ppl rather use dat instead of search
 
 ## Prerequisites
