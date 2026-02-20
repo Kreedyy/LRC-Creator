@@ -77,7 +77,7 @@
 		max-width: 1000px;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
-		min-width: 500px;
+	
 	}
 	.line-container.active {
 		background-color: var(--brand-500);
